@@ -1,9 +1,6 @@
-​#!/usr/bin/python3.8 
-​# -*- coding: utf-8 -*-
-
-​import telebot 
 import​ ​requests
 ​import​ ​json
+​import telebot 
 import​ ​sqlite3
 from​ ​telebot​ ​import​ ​types
 ​from​ ​random​ ​import​ ​randint
