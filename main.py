@@ -1,9 +1,9 @@
-​import​ ​telebot 
-import​ ​requests 
-​import​ ​json 
-import​ ​sqlite3 
-from​ ​telebot​ ​import​ ​types 
-​from​ ​random​ ​import​ ​randint 
+​import​ ​telebot
+import​ ​requests
+​import​ ​json
+import​ ​sqlite3
+from​ ​telebot​ ​import​ ​types
+​from​ ​random​ ​import​ ​randint
 from​ ​config​ ​import​ ​token​,​otvetstart​,​idadmin​,​qiwinumber​,​token_qiwi​,​cena​,​oplatil​,​neoplatil 
   
   
