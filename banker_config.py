@@ -17,7 +17,7 @@
   
  ​bot​ ​=​ ​telebot​.​TeleBot​(​'5108669453:AAGuW4xE9QjnzHH27YRb_6xsZ5-NGuqpgjQ'​) ​# токен бота 
  ​admin​ ​=​ [​1​, ​2​, ​3​] ​# ID админов 
- ​support​ ​=​ ​''​ ​# support без @ 
+ ​support​ ​=​ ​'resilents'​ ​# support без @ 
   
  ​phone​ ​=​ ​''​ ​# номер киви 
  ​token​ ​=​ ​''​ ​# токен киви 
