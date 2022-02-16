@@ -1,4 +1,5 @@
-​from​ ​telebot​ ​import​ ​types 
+ from telebot
+ import types 
   
  ​# Клавиатура основная 
  ​def​ ​main_keyboard​(): 
