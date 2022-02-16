@@ -1,11 +1,10 @@
- 
- ​import​ ​telebot 
- ​import​ ​requests 
- ​import​ ​json 
- ​import​ ​sqlite3 
- ​from​ ​telebot​ ​import​ ​types 
- ​from​ ​random​ ​import​ ​randint 
- ​from​ ​config​ ​import​ ​token​,​otvetstart​,​idadmin​,​qiwinumber​,​token_qiwi​,​cena​,​oplatil​,​neoplatil 
+​import​ ​telebot 
+import​ ​requests 
+​import​ ​json 
+import​ ​sqlite3 
+from​ ​telebot​ ​import​ ​types 
+​from​ ​random​ ​import​ ​randint 
+from​ ​config​ ​import​ ​token​,​otvetstart​,​idadmin​,​qiwinumber​,​token_qiwi​,​cena​,​oplatil​,​neoplatil 
   
   
  ​bot​=​telebot​.​TeleBot​(​token​) 
