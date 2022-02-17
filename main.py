@@ -6,7 +6,7 @@ from telebot import types
 from random import randint
 from config import token,otvetstart,idadmin,qiwinumber,token_qiwi,cena,oplatil,neoplatil
 
-​token​ ​=​ ​'5108669453:AAGuW4xE9QjnzHH27YRb_6xsZ5-NGuqpgjQ' 
+​token​​=​'5108669453:AAGuW4xE9QjnzHH27YRb_6xsZ5-NGuqpgjQ' 
 bot=telebot.TeleBot(token)
 
 ADMIN_CHAT_ID = 641892529
