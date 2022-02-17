@@ -36,13 +36,9 @@ def welcome(message):
 def handle_text(message):
     if message.text == "🗃️ Каталог ресурсов":  
         keyboard = types.InlineKeyboardMarkup()
-        btn1 = types.InlineKeyboardButton(text="🇺🇦 Украина", callback_data="uabtn")
-        btn2 = types.InlineKeyboardButton(text="🇷🇺 Россия", callback_data="test")
-        btn3 = types.InlineKeyboardButton(text="🇰🇿 Казахстан", callback_data="test")
-        btn4 = types.InlineKeyboardButton(text="🇧🇾 Беларусь", callback_data="test")
-        keyboard.add(btn1, btn2)
-        keyboard.add(btn3, btn4)
-        bot.send_message(message.chat.id, "🔍 *Выберите нужную вам страну для поиска данных.* \n\n*«Пробив»* — это противоправная услуга, с помощью которой злоумышленники получают из закрытых баз данных информацию о конкретном человеке или организации. Существование такого предложения было бы невозможно без инсайдеров — сотрудников, у которых есть доступ к нужной информации для выполнения служебных обязанностей.", reply_markup=keyboard, parse_mode='Markdown')
+        btn1 = types.InlineKeyboardButton(text="🔻 SLIVUP", callback_data="uabtn")
+        keyboard.add(btn1)
+        bot.send_message(message.chat.id, "🗃️ *Выберите нужный вам ресурс.* \n\n*SLIVUP* — Скачай более 300 000 курсов бесплатно. Приватные мануалы и схемы по заработку, редкие складчины по бизнесу, программированию и психологии.", reply_markup=keyboard, parse_mode='Markdown')
 
     if message.text == "⚙️ Инструменты":  
         keyboard = types.InlineKeyboardMarkup()
