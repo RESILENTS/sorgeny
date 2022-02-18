@@ -9,20 +9,7 @@ from config import token
 bot=telebot.TeleBot(token)
 ADMIN = 641892529
 
-query1 = '''
-CREATE TABLE links(
-    link text text,
-    hide_text text
-);'''
 
-# запрос на вставку данных
-query2 = '''
-INSERT INTO links(link, hide_text)
-VALUES ("pic1.jpg", "50KB"),("pic2.jpg", "50KB")
-'''
-
-database = 'db.db'
-connection = sqlite3.connect(database)
 
 kb = types.ReplyKeyboardMarkup(resize_keyboard=True)
 kb.add(types.InlineKeyboardButton(text="➕ Добавить в базу"))
@@ -46,6 +33,21 @@ def welcome(message):
     keyboard.add(btn2, btn3)
     keyboard.add(btn4, btn5)
     bot.send_photo(message.from_user.id, img, caption=text, reply_markup=keyboard, parse_mode='html')
+
+query1 = '''
+CREATE TABLE links(
+    link text text,
+    hide_text text
+);'''
+
+# запрос на вставку данных
+query2 = '''
+INSERT INTO links(link, hide_text)
+VALUES ("pic1.jpg", "50KB"),("pic2.jpg", "50KB")
+'''
+
+database = 'db.db'
+connection = sqlite3.connect(database)
 
 connection.execute(query1)
 connection.execute(query2)
