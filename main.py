@@ -9,7 +9,12 @@ from config import token
 bot=telebot.TeleBot(token)
 ADMIN = 641892529
 
+conn = sqlite3.connect('db.db', check_same_thread=False)
+cursor = conn.cursor()
 
+def db_table_val(user_id: int, user_name: str, user_surname: str, username: str):
+	cursor.execute('INSERT INTO test (user_id, user_name, user_surname, username) VALUES (?, ?, ?, ?)', (user_id, user_name, user_surname, username))
+	conn.commit()
 
 kb = types.ReplyKeyboardMarkup(resize_keyboard=True)
 kb.add(types.InlineKeyboardButton(text="➕ Добавить в базу"))
@@ -34,26 +39,17 @@ def welcome(message):
     keyboard.add(btn4, btn5)
     bot.send_photo(message.from_user.id, img, caption=text, reply_markup=keyboard, parse_mode='html')
 
-
-
-# запрос на вставку данных
-query2 = '''
-INSERT INTO links(link, hide_text)
-VALUES ("pic1.jpg", "50KB"),("pic2.jpg", "50KB")
-'''
-
-database = 'db.db'
-connection = sqlite3.connect(database)
-
-connection.execute(query2)
-connection.commit()
-connection.close()
-
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def handle_text(message):  
     if message.text == "➕ Добавить в базу":
         if message.from_user.id == ADMIN:
             bot.send_message(message.chat.id, 'Добро пожаловать в Админ-Панель! Выберите действие на клавиатуре', reply_markup=kb)
+		us_id = message.from_user.id
+		us_name = message.from_user.first_name
+		us_sname = message.from_user.last_name
+		username = message.from_user.username
+		
+		db_table_val(user_id=us_id, user_name=us_name, user_surname=us_sname, username=username)
 
     if message.text == "⚙️ Инструменты":  
         keyboard = types.InlineKeyboardMarkup()
