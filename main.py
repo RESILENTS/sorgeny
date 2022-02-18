@@ -48,8 +48,7 @@ def handle_text(message):
             us_name="2"
             us_sname="3"
             username="4"
-		
-		db_table_val(user_id=us_id, user_name=us_name, user_surname=us_sname, username=username)
+            db_table_val(user_id=us_id, user_name=us_name, user_surname=us_sname, username=username)
 
     if message.text == "⚙️ Инструменты":  
         keyboard = types.InlineKeyboardMarkup()
