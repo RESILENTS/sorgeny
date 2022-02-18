@@ -35,8 +35,6 @@ def welcome(message):
 
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def handle_text(message):  
-        bot.send_message(message.chat.id, "🗃️ *Выберите нужный вам ресурс.* \n\n*SLIVUP* — Скачай более 300 000 курсов бесплатно. Приватные мануалы и схемы по заработку, редкие складчины по бизнесу, программированию и психологии.", reply_markup=keyboard, parse_mode='Markdown')
-
     if message.text == "⚙️ Инструменты":  
         keyboard = types.InlineKeyboardMarkup()
         btn1 = types.InlineKeyboardButton(text="🔩 Генераторы", callback_data="uabtn")
