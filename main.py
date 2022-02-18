@@ -30,10 +30,12 @@ def welcome(message):
     text = "👋🏽 Добро пожаловать, {message.chat.first_name}.\n\n💚 *SORGENY* — Я помогу тебе получить скрытую информацию с разных интернет ресурсов.\n\nℹ️ У меня есть база данных слитых хайдов с разных интернет площадок. Более подробнее о боте вы сможете узнать в FAQ."
     img = open ('welc.webp', 'rb')
     keyboard = types.InlineKeyboardMarkup()
-    like_button= types.InlineKeyboardButton(text="Like", callback_data='like')
-    keyboard.add(like_button)
-    dislike_button =types.InlineKeyboardButton (text="Dislike", callback_data='dislike')
-    keyboard.add(like_button)
+    btn1 = types.InlineKeyboardButton(text="🔩 Генераторы", callback_data="uabtn")
+    btn2 = types.InlineKeyboardButton(text="⛓ Чекеры", callback_data="test")
+    btn3 = types.InlineKeyboardButton(text="📢 Спам, Флуд", callback_data="test")
+    btn4 = types.InlineKeyboardButton(text="🔨 Разные", callback_data="test")
+    keyboard.add(btn1, btn2)
+    keyboard.add(btn3, btn4)
     bot.send_photo(message.from_user.id, img, caption=text, reply_markup=keyboard, parse_mode='html')
 
 @bot.message_handler(func=lambda message: True, content_types=['text'])
