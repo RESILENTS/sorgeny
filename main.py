@@ -38,7 +38,7 @@ def welcome(message):
 
         with open('welc.webp', 'rb') as photo:
             bot.send_photo(message.chat.id, photo, caption=text3, reply_markup=keyboard_menu, parse_mode="markdown")
-            bot.send_message(message.chat.id, "📋 Вы вернулись в главное меню.", reply_markup=service, parse_mode='Markdown')
+            bot.send_photo(message.chat.id, "📋 Вы вернулись в главное меню.", reply_markup=service, parse_mode='Markdown')
         
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def handle_text(message):
