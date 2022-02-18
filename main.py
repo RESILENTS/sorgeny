@@ -32,7 +32,7 @@ def welcome(message):
     keyboard.add(*[types.KeyboardButton(name) for name in ['💼 Кнопка 1', '📊 Кнопка 2', '🚀 Кнопка 3', 'Кнопка 4']]) 
 
     with open('welc.webp', 'rb') as photo:
-        bot.send_photo(message.chat.id, photo, caption=text, reply_markup=keyboard, parse_mode="HTML")
+        bot.send_photo(message.chat.id, photo, caption=text, reply_markup=keyboard, parse_mode="markdown")
 
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def handle_text(message):
