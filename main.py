@@ -9,10 +9,26 @@ from config import token
 bot=telebot.TeleBot(token)
 ADMIN = 641892529
 
-conn = sqlite3.connect('db.db')
-cur = conn.cursor()
-cur.execute("""CREATE TABLE IF NOT EXISTS users(user_id INTEGER, block INTEGER);""")
-conn.commit()
+query1 = '''
+CREATE TABLE links(
+    link text text,
+    hide_text text
+);'''
+
+# запрос на вставку данных
+query2 = '''
+INSERT INTO links(link, hide_text)
+VALUES ("pic1.jpg", "50KB"),("pic2.jpg", "50KB")
+'''
+
+database = 'dd.db'
+connection = sqlite3.connect(database)
+# выполняем 1-ый запрос
+connection.execute(query1)
+# выполняем 2-ый запрос
+connection.execute(query2)
+connection.commit()
+connection.close()
 
 kb = types.ReplyKeyboardMarkup(resize_keyboard=True)
 kb.add(types.InlineKeyboardButton(text="➕ Добавить в базу"))
