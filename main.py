@@ -8,14 +8,12 @@ from config import token
 bot=telebot.TeleBot(token)
 
 ADMIN = 641892529
-
-
-          kb = types.ReplyKeyboardMarkup(resize_keyboard=True)
-          kb.add(types.InlineKeyboardButton(text="Рассылка"))
-          kb.add(types.InlineKeyboardButton(text="Добавить в ЧС"))
-          kb.add(types.InlineKeyboardButton(text="Убрать из ЧС"))
-          kb.add(types.InlineKeyboardButton(text="Статистика"))
-          await message.answer('Добро пожаловать в Админ-Панель! Выберите действие на клавиатуре', reply_markup=kb)
+kb = types.ReplyKeyboardMarkup(resize_keyboard=True)
+kb.add(types.InlineKeyboardButton(text="Рассылка"))
+kb.add(types.InlineKeyboardButton(text="Добавить в ЧС"))
+kb.add(types.InlineKeyboardButton(text="Убрать из ЧС"))
+kb.add(types.InlineKeyboardButton(text="Статистика"))
+await message.answer('Добро пожаловать в Админ-Панель! Выберите действие на клавиатуре', reply_markup=kb)
 
 @bot.message_handler(commands=["start"])
 def welcome(message):
