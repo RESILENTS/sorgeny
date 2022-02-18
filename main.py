@@ -33,7 +33,7 @@ def welcome(message):
            f"🏧 Bit+Coin - это моментальный обмен Bitcoin на Qiwi Сбербанк Яндекс.Деньги и Webmoney\n\n" \
            f"❕А так же бесплатное хранилище Ваших BTC\n\n"
     with open('welc.webp', 'rb') as photo:
-        bot.send_photo(message.chat.id, photo, caption=text, parse_mode="HTML"
+        bot.send_photo(message.chat.id, photo, caption=text, parse_mode="HTML")
 
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def handle_text(message):
