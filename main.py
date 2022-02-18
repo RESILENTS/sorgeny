@@ -17,12 +17,6 @@ cur = conn.cursor()
 cur.execute("""CREATE TABLE IF NOT EXISTS users(user_id INTEGER, block INTEGER);""")
 conn.commit()
 
-class dialog(StatesGroup):
-spam = State()
-blacklist = State()
-whitelist = State()
-
-
 kb = types.ReplyKeyboardMarkup(resize_keyboard=True)
 kb.add(types.InlineKeyboardButton(text="➕ Добавить в базу"))
 kb.add(types.InlineKeyboardButton(text="📥 Новые запросы"))
