@@ -21,7 +21,7 @@ INSERT INTO links(link, hide_text)
 VALUES ("pic1.jpg", "50KB"),("pic2.jpg", "50KB")
 '''
 
-database = 'dd.db'
+database = 'db.db'
 connection = sqlite3.connect(database)
 
 kb = types.ReplyKeyboardMarkup(resize_keyboard=True)
