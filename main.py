@@ -6,18 +6,23 @@ from telebot import types
 from random import randint
 from config import token
 
-bot=telebot.TeleBot(token)
-logging.basicConfig(level=logging.INFO)
-storage = MemoryStorage()
-dp = Dispatcher(bot, storage=storage)
+ bot=telebot.TeleBot(token)
+ logging.basicConfig(level=logging.INFO)
+ storage = MemoryStorage()
+ dp = Dispatcher(bot, storage=storage)
+ ADMIN = 641892529
 
-conn = sqlite3.connect('db.db')
-cur = conn.cursor()
-cur.execute("""CREATE TABLE IF NOT EXISTS users(user_id INTEGER, block INTEGER);""")
-conn.commit()
+ conn = sqlite3.connect('db.db')
+ cur = conn.cursor()
+ cur.execute("""CREATE TABLE IF NOT EXISTS users(user_id INTEGER, block INTEGER);""")
+ conn.commit()
+
+class dialog(StatesGroup):
+ spam = State()
+ blacklist = State()
+ whitelist = State()
 
 
-ADMIN = 641892529
 kb = types.ReplyKeyboardMarkup(resize_keyboard=True)
 kb.add(types.InlineKeyboardButton(text="Рассылка"))
 kb.add(types.InlineKeyboardButton(text="Добавить в ЧС"))
