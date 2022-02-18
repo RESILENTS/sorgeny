@@ -29,8 +29,6 @@ region1 = ''
 def welcome(message):	
         text3 = "👋🏽 Добро пожаловать, {message.chat.first_name}.\n\n💚 *SORGENY* — Я помогу тебе получить скрытую информацию с разных интернет ресурсов.\n\nℹ️ У меня есть база данных слитых хайдов с разных интернет площадок. Более подробнее о боте вы сможете узнать в FAQ."
         keyboard_menu = types.InlineKeyboardMarkup()
-        btn1 = types.InlineKeyboardButton(text="🔻 SLIVUP", callback_data="uabtn")
-        keyboard_menu.add(btn1)
 
         with open('welc.webp', 'rb') as photo:
             bot.send_photo(message.chat.id, photo, caption=text3, reply_markup=keyboard_menu, parse_mode="markdown")
