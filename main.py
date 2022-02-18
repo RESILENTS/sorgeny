@@ -30,11 +30,10 @@ def welcome(message):
         service = telebot.types.ReplyKeyboardMarkup(True)
         service.row('🗃️ Каталог ресурсов', '⚙️ Инструменты')
         service.row('ℹ️ Информация', '👥 Поддержка')
-            text = f"✌️ Приветствуем Вас, {message.chat.first_name}!\n\n" \
-           f"🏧 Bit+Coin - это моментальный обмен Bitcoin на Qiwi Сбербанк Яндекс.Деньги и Webmoney\n\n" \
-           f"❕А так же бесплатное хранилище Ваших BTC\n\n"
-  with open('/welc.webp', 'rb') as photo:
-        bot.send_photo(message.chat.id, photo, caption=text, reply_markup=service, parse_mode="markdown"
+        text = "test"
+        
+        with open('/welc.webp', 'rb') as photo:
+            bot.send_photo(message.chat.id, photo, caption=text, reply_markup=service, parse_mode="markdown"
         
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def handle_text(message):
