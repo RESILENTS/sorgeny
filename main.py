@@ -9,8 +9,19 @@ bot=telebot.TeleBot(token)
 
 ADMIN = 641892529
 
+
+          kb = types.ReplyKeyboardMarkup(resize_keyboard=True)
+          kb.add(types.InlineKeyboardButton(text="Рассылка"))
+          kb.add(types.InlineKeyboardButton(text="Добавить в ЧС"))
+          kb.add(types.InlineKeyboardButton(text="Убрать из ЧС"))
+          kb.add(types.InlineKeyboardButton(text="Статистика"))
+          await message.answer('Добро пожаловать в Админ-Панель! Выберите действие на клавиатуре', reply_markup=kb)
+
 @bot.message_handler(commands=["start"])
 def welcome(message):
+    if message.from_user.id == ADMIN:
+         await message.answer('Добро пожаловать в Админ-Панель! Выберите действие на клавиатуре', reply_markup=kb)
+
     text = "💚 SORGENY — Я помогу тебе получить скрытую информацию с разных интернет ресурсов.\n\nℹ️ У меня есть база данных слитых хайдов с разных интернет площадок. Более подробнее о боте вы сможете узнать в разделе информация."
     img = open ('welc.webp', 'rb')
     keyboard = types.InlineKeyboardMarkup()
@@ -25,17 +36,7 @@ def welcome(message):
     bot.send_photo(message.from_user.id, img, caption=text, reply_markup=keyboard, parse_mode='html')
 
 @bot.message_handler(func=lambda message: True, content_types=['text'])
-def handle_text(message):
-    if message.text == "adm666":  
-       if message.from_user.id == ADMIN:
-          kb = types.ReplyKeyboardMarkup(resize_keyboard=True)
-          kb.add(types.InlineKeyboardButton(text="Рассылка"))
-          kb.add(types.InlineKeyboardButton(text="Добавить в ЧС"))
-          kb.add(types.InlineKeyboardButton(text="Убрать из ЧС"))
-          kb.add(types.InlineKeyboardButton(text="Статистика"))
-          await message.answer('Добро пожаловать в Админ-Панель! Выберите действие на клавиатуре', reply_markup=kb)
-       else:
-
+def handle_text(message):  
         bot.send_message(message.chat.id, "🗃️ *Выберите нужный вам ресурс.* \n\n*SLIVUP* — Скачай более 300 000 курсов бесплатно. Приватные мануалы и схемы по заработку, редкие складчины по бизнесу, программированию и психологии.", reply_markup=keyboard, parse_mode='Markdown')
 
     if message.text == "⚙️ Инструменты":  
