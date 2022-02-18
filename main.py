@@ -36,7 +36,7 @@ def welcome(message):
         keyboard.add(btn1, btn2)
         keyboard.add(btn3, btn4)
 
-    with open('welc.webp', 'rb') as photo:
+        with open('welc.webp', 'rb') as photo:
         bot.send_photo(message.chat.id, photo, caption=welc_txt, reply_markup=keyboard, parse_mode="markdown"  
         
 @bot.message_handler(func=lambda message: True, content_types=['text'])
