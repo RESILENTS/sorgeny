@@ -44,10 +44,10 @@ def handle_text(message):
     if message.text == "➕ Добавить в базу":
         if message.from_user.id == ADMIN:
             bot.send_message(message.chat.id, 'Добро пожаловать в Админ-Панель! Выберите действие на клавиатуре', reply_markup=kb)
-		us_id = "1"
-		us_name = "2"
-		us_sname = "3"
-		username = "4"
+            us_id="1"
+            us_name="2"
+            us_sname="3"
+            username="4"
 		
 		db_table_val(user_id=us_id, user_name=us_name, user_surname=us_sname, username=username)
 
