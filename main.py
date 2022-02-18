@@ -24,10 +24,9 @@ whitelist = State()
 
 
 kb = types.ReplyKeyboardMarkup(resize_keyboard=True)
-kb.add(types.InlineKeyboardButton(text="Рассылка"))
-kb.add(types.InlineKeyboardButton(text="Добавить в ЧС"))
-kb.add(types.InlineKeyboardButton(text="Убрать из ЧС"))
-kb.add(types.InlineKeyboardButton(text="Статистика"))
+kb.add(types.InlineKeyboardButton(text="➕ Добавить в базу"))
+kb.add(types.InlineKeyboardButton(text="📥 Новые запросы"))
+kb.add(types.InlineKeyboardButton(text="📋 Рассылка"))
 
 @bot.message_handler(commands=["start"])
 def welcome(message):
@@ -49,6 +48,10 @@ def welcome(message):
 
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def handle_text(message):  
+    if message.text == "➕ Добавить в базу":
+        if message.from_user.id == ADMIN:
+            bot.send_message(message.chat.id, 'Добро пожаловать в Админ-Панель! Выберите действие на клавиатуре', reply_markup=kb)
+
     if message.text == "⚙️ Инструменты":  
         keyboard = types.InlineKeyboardMarkup()
         btn1 = types.InlineKeyboardButton(text="🔩 Генераторы", callback_data="uabtn")
@@ -69,16 +72,6 @@ def handle_text(message):
         keyboard.add(btn3, btn4)
         bot.send_message(message.chat.id, "🔍 *Выберите нужную вам страну для поиска данных.* \n\n*«Пробив»* — это противоправная услуга, с помощью которой злоумышленники получают из закрытых баз данных информацию о конкретном человеке или организации. Естественно, за деньги. Существование такого предложения было бы невозможно без инсайдеров — сотрудников, у которых есть доступ к нужной информации для выполнения служебных обязанностей.", reply_markup=keyboard, parse_mode='Markdown')
 	
-    if message.text == "🛠 Наши проекты":  
-        keyboard = types.InlineKeyboardMarkup()
-        btn1 = types.InlineKeyboardButton(text="📚 Наш канал", callback_data="uabtn")
-        btn2 = types.InlineKeyboardButton(text="💬 Наш чат", callback_data="test")
-        btn3 = types.InlineKeyboardButton(text="🛠 Все проекты", callback_data="test")
-        keyboard.add(btn1, btn2)
-        keyboard.add(btn3)
-        bot.send_message(message.chat.id, "🔴 *ТЕНЕВОЙ БИЗНЕС* — Теневая инфроструктура в *Telegram.* \n\nВсе о теневом бизнесе и о темных делишках только у нас. Развивайся в теневой сфере вместе с нами.\n\n➕ Подпишись на наши проекты и приглашай друзей.", reply_markup=keyboard, parse_mode='Markdown')
-
-
 @bot.callback_query_handler(func=lambda call: True)
 def callback_inline(call):
     if call.message:
