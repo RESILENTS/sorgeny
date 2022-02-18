@@ -27,8 +27,8 @@ region1 = ''
 
 @bot.message_handler(commands = ['start'])
 def welcome(message):	
-    text3 = "👋🏽 Добро пожаловать, {message.chat.first_name}.\n\n💚 *SORGENY* — Я помогу тебе получить скрытую информацию с разных интернет ресурсов.\n\nℹ️ У меня есть база данных слитых хайдов с разных интернет площадок. Более подробнее о боте вы сможете узнать в FAQ."
-keyboard = types.InlineKeyboardMarkup()
+        welc_txt = "👋🏽 Добро пожаловать, {message.chat.first_name}.\n\n💚 *SORGENY* — Я помогу тебе получить скрытую информацию с разных интернет ресурсов.\n\nℹ️ У меня есть база данных слитых хайдов с разных интернет площадок. Более подробнее о боте вы сможете узнать в FAQ."
+        keyboard = types.InlineKeyboardMarkup()
         btn1 = types.InlineKeyboardButton(text="🔩 Генераторы", callback_data="uabtn")
         btn2 = types.InlineKeyboardButton(text="⛓ Чекеры", callback_data="test")
         btn3 = types.InlineKeyboardButton(text="📢 Спам, Флуд", callback_data="test")
@@ -37,7 +37,7 @@ keyboard = types.InlineKeyboardMarkup()
         keyboard.add(btn3, btn4)
 
     with open('welc.webp', 'rb') as photo:
-        bot.send_photo(message.chat.id, photo, caption=text3, reply_markup=keyboard, parse_mode="HTML"  
+        bot.send_photo(message.chat.id, photo, caption=welc_txt, reply_markup=keyboard, parse_mode="markdown"  
         
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def handle_text(message):
