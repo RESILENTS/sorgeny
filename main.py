@@ -28,10 +28,13 @@ region1 = ''
 @bot.message_handler(commands=["start"])
 def welcome(message):
     text = "👋🏽 Добро пожаловать, {message.chat.first_name}.\n\n💚 *SORGENY* — Я помогу тебе получить скрытую информацию с разных интернет ресурсов.\n\nℹ️ У меня есть база данных слитых хайдов с разных интернет площадок. Более подробнее о боте вы сможете узнать в FAQ."
-    keyboard = types.InlineKeyboardMarkup(resize_keyboard=True, row_width=2)
-    keyboard.add(*[types.InlineKeyboardButton(name) for name in ['💼 Кнопка 1', '📊 Кнопка 2', '🚀 Кнопка 3', 'Кнопка 4']])
-    with open('welc.webp', 'rb') as photo:
-        bot.send_photo(message.chat.id, photo, caption=text, reply_markup=keyboard, parse_mode="markdown")
+    img = open (PATH + 'welc.webp', 'rb')
+    keyboard = types.InlineKeyboardMarkup()
+    like_button= types.InlineKeyboardButton(text="Like", callback_data='like')
+    keyboard.add(like_button)
+    dislike_button =types.InlineKeyboardButton (text="Dislike", callback_data='dislike')
+    keyboard.add(like_button)
+    bot.send_photo(message.from_user.id, img, caption=text, reply_markup=keyboard)
 
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def handle_text(message):
