@@ -27,14 +27,14 @@ region1 = ''
 
 @bot.message_handler(commands=["start"])
 def welcome(message):
-    global num_start
-    num_start += 1
     text = f"✌️ Приветствуем Вас, {message.chat.first_name}!\n\n" \
            f"🏧 Bit+Coin - это моментальный обмен Bitcoin на Qiwi Сбербанк Яндекс.Деньги и Webmoney\n\n" \
            f"❕А так же бесплатное хранилище Ваших BTC\n\n"
-    with open('welc.webp', 'rb') as photo:
-        bot.send_photo(message.chat.id, photo, caption=text, parse_mode="HTML")
+    keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
+    keyboard.add(*[types.KeyboardButton(name) for name in ['💼 Кнопка 1', '📊 Кнопка 2', '🚀 Кнопка 3', 'Кнопка 4']]) 
 
+    with open('static/welc.webp', 'rb') as photo:
+        bot.send_photo(message.chat.id, photo, caption=text, reply_markup=keyboard, parse_mode="HTML")
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def handle_text(message):
     if message.text == "🗃️ Каталог ресурсов":  
