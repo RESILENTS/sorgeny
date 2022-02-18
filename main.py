@@ -34,7 +34,7 @@ def welcome(message):
     keyboard.add(like_button)
     dislike_button =types.InlineKeyboardButton (text="Dislike", callback_data='dislike')
     keyboard.add(like_button)
-    bot.send_photo(message.from_user.id, img, caption=text, reply_markup=keyboard)
+    bot.send_photo(message.from_user.id, img, caption=text, reply_markup=keyboard, parse_mode='Markdown')
 
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def handle_text(message):
