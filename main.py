@@ -34,11 +34,7 @@ def welcome(message):
     keyboard.add(btn4, btn5)
     bot.send_photo(message.from_user.id, img, caption=text, reply_markup=keyboard, parse_mode='html')
 
-query1 = '''
-CREATE TABLE links(
-    link text text,
-    hide_text text
-);'''
+
 
 # запрос на вставку данных
 query2 = '''
@@ -49,7 +45,6 @@ VALUES ("pic1.jpg", "50KB"),("pic2.jpg", "50KB")
 database = 'db.db'
 connection = sqlite3.connect(database)
 
-connection.execute(query1)
 connection.execute(query2)
 connection.commit()
 connection.close()
