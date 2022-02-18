@@ -28,7 +28,7 @@ region1 = ''
 @bot.message_handler(commands=["start"])
 def welcome(message):
     text = "👋🏽 Добро пожаловать, {message.chat.first_name}.\n\n💚 *SORGENY* — Я помогу тебе получить скрытую информацию с разных интернет ресурсов.\n\nℹ️ У меня есть база данных слитых хайдов с разных интернет площадок. Более подробнее о боте вы сможете узнать в FAQ."
-    img = open (PATH + 'welc.webp', 'rb')
+    img = open ('welc.webp', 'rb')
     keyboard = types.InlineKeyboardMarkup()
     like_button= types.InlineKeyboardButton(text="Like", callback_data='like')
     keyboard.add(like_button)
