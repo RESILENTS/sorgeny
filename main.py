@@ -30,7 +30,11 @@ def welcome(message):
         service = telebot.types.ReplyKeyboardMarkup(True)
         service.row('🗃️ Каталог ресурсов', '⚙️ Инструменты')
         service.row('ℹ️ Информация', '👥 Поддержка')
-        bot.send_message(message.chat.id, "👋🏽 Добро пожаловать, *"+ message.from_user.first_name +".**\n\nSORGENY — Я помогу тебе получить скрытую информацию с разных интернет ресурсов.*\n\nУ меня есть функции для поиска информации по интернету.\nДанный проект работает на абсолютно бесплатной основе и создан ради того, чтобы помочь вам в поисках лиц.\n\n👤 *По всем вопросам: @resilents*", reply_markup=service, parse_mode='Markdown')
+            text = f"✌️ Приветствуем Вас, {message.chat.first_name}!\n\n" \
+           f"🏧 Bit+Coin - это моментальный обмен Bitcoin на Qiwi Сбербанк Яндекс.Деньги и Webmoney\n\n" \
+           f"❕А так же бесплатное хранилище Ваших BTC\n\n"
+  with open('static/welc.webp', 'rb') as photo:
+        bot.send_photo(message.chat.id, photo, caption=text, reply_markup=keyboard, parse_mode="HTML"
         
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def handle_text(message):
