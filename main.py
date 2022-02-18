@@ -33,7 +33,7 @@ def welcome(message):
         text3 = "test"
         
         with open('/welc.webp', 'rb') as photo:
-            bot.send_photo(message.chat.id, photo, caption=text3, reply_markup=service, parse_mode="markdown"
+            bot.send_photo(message.chat.id, photo, caption=text3, reply_markup=service, parse_mode="markdown")
         
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def handle_text(message):
