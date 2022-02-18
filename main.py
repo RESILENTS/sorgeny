@@ -7,9 +7,6 @@ from random import randint
 from config import token
 
 bot=telebot.TeleBot(token)
-logging.basicConfig(level=logging.INFO)
-storage = MemoryStorage()
-dp = Dispatcher(bot, storage=storage)
 ADMIN = 641892529
 
 conn = sqlite3.connect('db.db')
