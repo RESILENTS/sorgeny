@@ -23,12 +23,6 @@ VALUES ("pic1.jpg", "50KB"),("pic2.jpg", "50KB")
 
 database = 'dd.db'
 connection = sqlite3.connect(database)
-# выполняем 1-ый запрос
-connection.execute(query1)
-# выполняем 2-ый запрос
-connection.execute(query2)
-connection.commit()
-connection.close()
 
 kb = types.ReplyKeyboardMarkup(resize_keyboard=True)
 kb.add(types.InlineKeyboardButton(text="➕ Добавить в базу"))
@@ -52,6 +46,11 @@ def welcome(message):
     keyboard.add(btn2, btn3)
     keyboard.add(btn4, btn5)
     bot.send_photo(message.from_user.id, img, caption=text, reply_markup=keyboard, parse_mode='html')
+
+connection.execute(query1)
+connection.execute(query2)
+connection.commit()
+connection.close()
 
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def handle_text(message):  
