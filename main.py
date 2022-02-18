@@ -28,19 +28,21 @@ region1 = ''
 @bot.message_handler(commands = ['start'])
 def welcome(message):	
         service = telebot.types.ReplyKeyboardMarkup(True)
-        service.row('🗃️ Каталог ресурсов', '⚙️ Инструменты')
-        service.row('ℹ️ Информация', '👥 Поддержка')
+        service.row('📋 Меню', 'ℹ️ FAQ')
+        service.row('🔴 ТЕНЕВОЙ ЧАТ')
         text3 = "test"
         
+        keyboard_menu = types.InlineKeyboardMarkup()
+        btn1 = types.InlineKeyboardButton(text="🔻 SLIVUP", callback_data="uabtn")
+        keyboard.add(btn1)
+
         with open('welc.webp', 'rb') as photo:
-            bot.send_photo(message.chat.id, photo, caption=text3, reply_markup=service, parse_mode="markdown")
+            bot.send_photo(message.chat.id, photo, caption=text3, reply_markup=service, reply_markup=keyboard_menu, parse_mode="markdown")
         
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def handle_text(message):
     if message.text == "🗃️ Каталог ресурсов":  
-        keyboard = types.InlineKeyboardMarkup()
-        btn1 = types.InlineKeyboardButton(text="🔻 SLIVUP", callback_data="uabtn")
-        keyboard.add(btn1)
+
         bot.send_message(message.chat.id, "🗃️ *Выберите нужный вам ресурс.* \n\n*SLIVUP* — Скачай более 300 000 курсов бесплатно. Приватные мануалы и схемы по заработку, редкие складчины по бизнесу, программированию и психологии.", reply_markup=keyboard, parse_mode='Markdown')
 
     if message.text == "⚙️ Инструменты":  
