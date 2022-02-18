@@ -29,7 +29,7 @@ region1 = ''
 def welcome(message):
     text = "👋🏽 Добро пожаловать, {message.chat.first_name}.\n\n💚 *SORGENY* — Я помогу тебе получить скрытую информацию с разных интернет ресурсов.\n\nℹ️ У меня есть база данных слитых хайдов с разных интернет площадок. Более подробнее о боте вы сможете узнать в FAQ."
     keyboard = types.InlineKeyboardMarkup(resize_keyboard=True, row_width=2)
-    keyboard.add(*[types.KeyboardButton(name) for name in ['💼 Кнопка 1', '📊 Кнопка 2', '🚀 Кнопка 3', 'Кнопка 4']])
+    keyboard.add(*[types.InlineKeyboardButton(name) for name in ['💼 Кнопка 1', '📊 Кнопка 2', '🚀 Кнопка 3', 'Кнопка 4']])
     with open('welc.webp', 'rb') as photo:
         bot.send_photo(message.chat.id, photo, caption=text, reply_markup=keyboard, parse_mode="markdown")
 
