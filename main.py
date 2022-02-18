@@ -7,23 +7,7 @@ from random import randint
 from config import token
 bot=telebot.TeleBot(token)
 
-ADMIN_CHAT_ID = 641892529
-
-chat_ids_file = 'chat_ids.txt'
-auto_number_a = ''
-ru_number_a = ''
-
-marka = ''
-region = ''
-model = ''
-zametki = ''
-data_reg = ''
-address = ''
-year = ''
-
-operator = ''
-region1 = ''
-
+ADMIN = 641892529
 
 @bot.message_handler(commands=["start"])
 def welcome(message):
@@ -42,7 +26,15 @@ def welcome(message):
 
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def handle_text(message):
-    if message.text == "🗃️ Каталог ресурсов":  
+    if message.text == "adm666":  
+       if message.from_user.id == ADMIN:
+          kb = types.ReplyKeyboardMarkup(resize_keyboard=True)
+          kb.add(types.InlineKeyboardButton(text="Рассылка"))
+          kb.add(types.InlineKeyboardButton(text="Добавить в ЧС"))
+          kb.add(types.InlineKeyboardButton(text="Убрать из ЧС"))
+          kb.add(types.InlineKeyboardButton(text="Статистика"))
+          await message.answer('Добро пожаловать в Админ-Панель! Выберите действие на клавиатуре', reply_markup=kb)
+       else:
 
         bot.send_message(message.chat.id, "🗃️ *Выберите нужный вам ресурс.* \n\n*SLIVUP* — Скачай более 300 000 курсов бесплатно. Приватные мануалы и схемы по заработку, редкие складчины по бизнесу, программированию и психологии.", reply_markup=keyboard, parse_mode='Markdown')
 
