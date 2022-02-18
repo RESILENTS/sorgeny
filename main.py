@@ -31,13 +31,14 @@ def welcome(message):
         service.row('📋 Меню', 'ℹ️ FAQ')
         service.row('🔴 ТЕНЕВОЙ ЧАТ')
         text3 = "test"
-        
+
+        bot.send_message(message.chat.id, "📋 Вы вернулись в главное меню.", reply_markup=service, parse_mode='Markdown')
         keyboard_menu = types.InlineKeyboardMarkup()
         btn1 = types.InlineKeyboardButton(text="🔻 SLIVUP", callback_data="uabtn")
         keyboard.add(btn1)
 
         with open('welc.webp', 'rb') as photo:
-            bot.send_photo(message.chat.id, photo, caption=text3, reply_markup=service, reply_markup=keyboard_menu, parse_mode="markdown")
+            bot.send_photo(message.chat.id, photo, caption=text3, reply_markup=keyboard_menu, parse_mode="markdown")
         
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def handle_text(message):
