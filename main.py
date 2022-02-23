@@ -63,13 +63,13 @@ def handle_text(message):
 def add1(message):
 	global m1
 	m1 = message.text
-	msg = bot.send_message(message.chat.id, 'Сколько времени готовы уделять?',parse_mode='HTML')
+	msg = bot.send_message(message.chat.id, '➕ Введите главную ссылку.\n\n Внимание! По этой ссылке будет производится поиск в базе данных.',parse_mode='HTML')
 	bot.register_next_step_handler(msg, add2)
 
 def add2(message):
 	global m2
 	m2 = message.text
-	msg = bot.send_message(message.chat.id, 'Имеется ли у вас опыт?',parse_mode='HTML')
+	msg = bot.send_message(message.chat.id, '➕ Введите скрытое содержимое.',parse_mode='HTML')
 	bot.register_next_step_handler(msg, add3)
 
 def add3(message):
@@ -77,9 +77,8 @@ def add3(message):
 	m3 = message.text
 	keyboard = types.InlineKeyboardMarkup()
 	keyboard.add(types.InlineKeyboardButton(text='✔️ Принять',callback_data=f'принятьзаявку_{message.chat.id}'))
-	bot.send_message(message.chat.id, f'''Имя: @{message.from_user.username}
-Откуда вы о нас узнали?: {m1}
-Имеется ли у вас опыт?: {m3}''',parse_mode='HTML',reply_markup=keyboard)
+	bot.send_message(message.chat.id, f'''Ссылка: {m1}
+Содержимое скрытого текста: {m3}''',parse_mode='HTML',reply_markup=keyboard)
 
 
 @bot.callback_query_handler(func=lambda call:True)
