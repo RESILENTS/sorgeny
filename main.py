@@ -42,7 +42,7 @@ def welcome(message):
 def handle_text(message):  
     if message.text == "➕ Добавить в базу":
         if message.from_user.id == ADMIN:	
-​           keyboard=types​.​InlineKeyboardMarkup​() 
+​           keyboard = types.InlineKeyboardMarkup()
            ​keyboard​.​add​(​types​.​InlineKeyboardButton​(​text​=​'➕ Добавить'​,​callback_data​=​'податьзаявку'​)) 
            ​bot​.​send_message​(​message​.​chat​.​id​,​"➕ Для публикации нового поста нажмите на кнопку ниже."​,​disable_web_page_preview​ ​=​ ​True​, ​reply_markup​=​keyboard​)
 
