@@ -40,17 +40,13 @@ def welcome(message):
 
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def handle_text(message):  
+    if message.text == "➕ Добавить в базу":
+        if message.from_user.id == ADMIN:	
+           userid​ ​=​ ​str​(​message​.​chat​.​id​) 
+           ​keyboard​ ​=​ ​types​.​InlineKeyboardMarkup​() 
+           ​keyboard​.​add​(​types​.​InlineKeyboardButton​(​text​=​'➕ Добавить'​,​callback_data​=​'податьзаявку'​)) 
+           ​bot​.​send_message​(​message​.​chat​.​id​,​"➕ Для публикации нового поста нажмите на кнопку ниже."​,​disable_web_page_preview​ ​=​ ​True​, ​reply_markup​=​keyboard​)
 
-    if message.text == "⚙️ Инструменты":  
-        keyboard = types.InlineKeyboardMarkup()
-        btn1 = types.InlineKeyboardButton(text="🔩 Генераторы", callback_data="uabtn")
-        btn2 = types.InlineKeyboardButton(text="⛓ Чекеры", callback_data="test")
-        btn3 = types.InlineKeyboardButton(text="📢 Спам, Флуд", callback_data="test")
-        btn4 = types.InlineKeyboardButton(text="🔨 Разные", callback_data="test")
-        keyboard.add(btn1, btn2)
-        keyboard.add(btn3, btn4)
-        bot.send_message(message.chat.id, "⚙ *Полезные инструменты которые помогут вам в теневой сфере.*\n\n*Генераторы* — Инструменты которые генерирует информацию, фейковые данные и прочее полезное.\n\n*Чекеры* — Инструменты для чека валидности кредитных карт и других сервисов. \n\n*Спам, флуд* — Инструменты для спама, флуда по SMS, E-mail и других сервисов. \n\n*Разные инструменты* — Инструменты которые не попали по категориям выше.", reply_markup=keyboard, parse_mode='Markdown')
-	
     if message.text == "ℹ Информация":  
         keyboard = types.InlineKeyboardMarkup()
         btn1 = types.InlineKeyboardButton(text="🔩 Генераторы", callback_data="uabtn")
