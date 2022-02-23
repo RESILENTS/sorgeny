@@ -31,9 +31,11 @@ def welcome(message):
     btn2 = types.InlineKeyboardButton(text="ℹ️ Информация", callback_data="test")
     btn3 = types.InlineKeyboardButton(text="📢 Наш канал", callback_data="test")
     btn4 = types.InlineKeyboardButton(text="📊 Статистика", callback_data="test")
+    btn6 = types.InlineKeyboardButton(text="📃 Открыть главное меню", callback_data="test")
     btn5 = types.InlineKeyboardButton(text="👥 Поддержка", callback_data="test")
     keyboard.add(btn1)
     keyboard.add(btn2, btn3)
+    keyboard.add(btn6)
     keyboard.add(btn4, btn5)
     bot.send_photo(message.from_user.id, img, caption=text, reply_markup=keyboard, parse_mode='html')
 
