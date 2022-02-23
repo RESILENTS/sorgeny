@@ -9,6 +9,7 @@ from config import token
 
 bot=telebot.TeleBot(token)
 ADMIN = 641892529
+in_admin = []
 
 conn = sqlite3.connect('db.db', check_same_thread=False)
 cursor = conn.cursor()
@@ -24,12 +25,6 @@ kb.add(types.InlineKeyboardButton(text="📋 Рассылка"))
 
 @bot.message_handler(commands=["start"])
 def welcome(message):
-    if message.from_user.id == ADMIN:
-	elif '/adm' == message.text:
-		if not message.chat.id in in_admin:  in_admin.append(message.chat.id)
-		adminka.in_adminka(message.chat.id, message.text, message.chat.username, message.from_user.first_name)
-
-	elif  message.chat.id in in_admin: adminka.in_adminka(message.chat.id, message.text, message.chat.username, message.from_user.first_name)
 
     text = "💚 SORGENY — Я помогу тебе получить скрытую информацию с разных интернет ресурсов.\n\nℹ️ У меня есть база данных слитых хайдов с разных интернет площадок. Более подробнее о боте вы сможете узнать в разделе информация."
     img = open ('welc.webp', 'rb')
@@ -43,6 +38,11 @@ def welcome(message):
     keyboard.add(btn2, btn3)
     keyboard.add(btn4, btn5)
     bot.send_photo(message.from_user.id, img, caption=text, reply_markup=keyboard, parse_mode='html')
+
+    elif '/adm' == message.text:
+         if not message.chat.id in in_admin:  in_admin.append(message.chat.id)
+         adminka.in_adminka(message.chat.id, message.text, message.chat.username, message.from_user.first_name)
+    elif  message.chat.id in in_admin: adminka.in_adminka(message.chat.id, message.text, message.chat.username, message.from_user.first_name)
 
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def handle_text(message):  
