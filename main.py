@@ -39,21 +39,14 @@ def welcome(message):
     keyboard.add(btn4, btn5)
     bot.send_photo(message.from_user.id, img, caption=text, reply_markup=keyboard, parse_mode='html')
 
-    elif '/adm' == message.text:
-         if not message.chat.id in in_admin:  in_admin.append(message.chat.id)
-         adminka.in_adminka(message.chat.id, message.text, message.chat.username, message.from_user.first_name)
-    elif  message.chat.id in in_admin: adminka.in_adminka(message.chat.id, message.text, message.chat.username, message.from_user.first_name)
 
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def handle_text(message):  
     if message.text == "➕ Добавить в базу":
         if message.from_user.id == ADMIN:
-            bot.send_message(message.chat.id, 'Добро пожаловать в Админ-Панель! Выберите действие на клавиатуре', reply_markup=kb)
-            us_id="1"
-            us_name="2"
-            us_sname="3"
-            username="4"
-            db_table_val(user_id=us_id, user_name=us_name, user_surname=us_sname, username=username)
+            if not message.chat.id in in_admin:  in_admin.append(message.chat.id)
+                 adminka.in_adminka(message.chat.id, message.text, message.chat.username, message.from_user.first_name)
+            elif  message.chat.id in in_admin: adminka.in_adminka(message.chat.id, message.text, message.chat.username, message.from_user.first_name)
 
     if message.text == "⚙️ Инструменты":  
         keyboard = types.InlineKeyboardMarkup()
