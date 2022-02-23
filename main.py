@@ -75,10 +75,9 @@ def add3(message):
 	m3 = message.text
 	keyboard = types.InlineKeyboardMarkup()
 	keyboard.add(types.InlineKeyboardButton(text='✔️ Принять',callback_data=f'принятьзаявку_{message.chat.id}'))
-	bot.send_message(idcanal, f'''Имя: @{message.from_user.username}
+	bot.send_message(message.chat.id, f'''Имя: @{message.from_user.username}
 Откуда вы о нас узнали?: {m1}
 Имеется ли у вас опыт?: {m3}''',parse_mode='HTML',reply_markup=keyboard)
-	bot.send_message(message.chat.id, 'Заявка отправлена',parse_mode='HTML')
 
 
 @bot.callback_query_handler(func=lambda call:True)
