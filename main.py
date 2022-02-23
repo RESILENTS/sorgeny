@@ -44,7 +44,6 @@ def welcome(message):
 def handle_text(message):  
     if message.text == "➕ Добавить в базу":
         if message.from_user.id == ADMIN:
-            message.chat.id in in_admin: adminka.in_adminka(message.chat.id, message.text, message.from_user.id)
 
     if message.text == "⚙️ Инструменты":  
         keyboard = types.InlineKeyboardMarkup()
