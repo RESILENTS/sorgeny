@@ -1,2 +1,2 @@
-admin_id = 
+admin_id = 641892529
 token="5108669453:AAGuW4xE9QjnzHH27YRb_6xsZ5-NGuqpgjQ"
