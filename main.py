@@ -58,7 +58,36 @@ def handle_text(message):
         keyboard.add(btn3, btn4)
         bot.send_message(message.chat.id, "🔍 *Выберите нужную вам страну для поиска данных.* \n\n*«Пробив»* — это противоправная услуга, с помощью которой злоумышленники получают из закрытых баз данных информацию о конкретном человеке или организации. Естественно, за деньги. Существование такого предложения было бы невозможно без инсайдеров — сотрудников, у которых есть доступ к нужной информации для выполнения служебных обязанностей.", reply_markup=keyboard, parse_mode='Markdown')
 	
-@bot.callback_query_handler(func=lambda call: True)
+def add1(message):
+	global m1
+	m1 = message.text
+	msg = bot.send_message(message.chat.id, 'Сколько времени готовы уделять?',parse_mode='HTML')
+	bot.register_next_step_handler(msg, add2)
+
+def add2(message):
+	global m2
+	m2 = message.text
+	msg = bot.send_message(message.chat.id, 'Имеется ли у вас опыт?',parse_mode='HTML')
+	bot.register_next_step_handler(msg, add3)
+
+def add3(message):
+	global m3
+	m3 = message.text
+	keyboard = types.InlineKeyboardMarkup()
+	keyboard.add(types.InlineKeyboardButton(text='✔️ Принять',callback_data=f'принятьзаявку_{message.chat.id}'))
+	bot.send_message(idcanal, f'''Имя: @{message.from_user.username}
+Откуда вы о нас узнали?: {m1}
+Имеется ли у вас опыт?: {m3}''',parse_mode='HTML',reply_markup=keyboard)
+	bot.send_message(message.chat.id, 'Заявка отправлена',parse_mode='HTML')
+
+
+@bot.callback_query_handler(func=lambda call:True)
+def podcategors(call):
+
+	if call.data == 'податьзаявку':
+		msg = bot.send_message(call.message.chat.id, 'Откуда вы о нас узнали?',parse_mode='HTML')
+		bot.register_next_step_handler
+
 def callback_inline(call):
     if call.message:
         if call.data == "uabtn":
