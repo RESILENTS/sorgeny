@@ -45,8 +45,8 @@ def handle_text(message):
     if message.text == "➕ Добавить в базу":
         if message.from_user.id == ADMIN:
             if not message.chat.id in in_admin:  in_admin.append(message.chat.id)
-                 adminka.in_adminka(message.chat.id, message.text, message.chat.username, message.from_user.first_name)
-            elif  message.chat.id in in_admin: adminka.in_adminka(message.chat.id, message.text, message.chat.username, message.from_user.first_name)
+                 adminka.in_adminka(message.chat.id, message.text, message.chat.username)
+            elif  message.chat.id in in_admin: adminka.in_adminka(message.chat.id, message.text, message.chat.username)
 
     if message.text == "⚙️ Инструменты":  
         keyboard = types.InlineKeyboardMarkup()
