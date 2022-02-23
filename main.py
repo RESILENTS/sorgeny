@@ -86,7 +86,7 @@ def podcategors(call):
 
 	if call.data == 'податьзаявку':
 		msg = bot.send_message(call.message.chat.id, 'Откуда вы о нас узнали?',parse_mode='HTML')
-		bot.register_next_step_handler(msg, add1)
+		bot.register_next_step_handler(add1)
 
 	if call.data[:14] == 'принятьзаявку_':
 		idasd = call.data[14:]
