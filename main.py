@@ -46,7 +46,7 @@ def handle_text(message):
             btn1 = types.InlineKeyboardButton(text="➕ Добавить", callback_data="податьзаявку")
             btn2 = types.InlineKeyboardButton(text="📃 Меню", callback_data="test")
             keyboard.add(btn1, btn2)
-            bot.send_message(message.chat.id, "➕ Для публикации нового поста нажмите на кнопку ниже.", reply_markup=keyboard, parse_mode='Markdown')
+            bot.send_message(message.chat.id, "Для публикации нового поста нажмите на кнопку ниже.", reply_markup=keyboard, parse_mode='Markdown')
 
     if message.text == "ℹ Информация":  
         keyboard = types.InlineKeyboardMarkup()
