@@ -42,8 +42,6 @@ def welcome(message):
 
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def handle_text(message):  
-    if message.text == "➕ Добавить в базу":
-        if message.from_user.id == ADMIN:
 
     if message.text == "⚙️ Инструменты":  
         keyboard = types.InlineKeyboardMarkup()
