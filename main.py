@@ -86,7 +86,7 @@ def podcategors(call):
 
 	if call.data == 'податьзаявку':
 		msg = bot.send_message(call.message.chat.id, 'Откуда вы о нас узнали?',parse_mode='HTML')
-		bot.register_next_step_handler
+		bot.register_next_step_handler(msg, add1)
 
 def callback_inline(call):
     if call.message:
