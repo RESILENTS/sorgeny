@@ -23,6 +23,7 @@ kb.add(types.InlineKeyboardButton(text="📋 Рассылка"))
 
 @bot.message_handler(commands=["start"])
 def welcome(message):
+    userid = str(message.chat.id)
     text = "💚 SORGENY — Я помогу тебе получить скрытую информацию с разных интернет ресурсов.\n\nℹ️ У меня есть база данных слитых хайдов с разных интернет площадок. Более подробнее о боте вы сможете узнать в разделе информация."
     img = open ('welc.webp', 'rb')
     keyboard = types.InlineKeyboardMarkup()
@@ -86,6 +87,14 @@ def podcategors(call):
 	if call.data == 'податьзаявку':
 		msg = bot.send_message(call.message.chat.id, 'Откуда вы о нас узнали?',parse_mode='HTML')
 		bot.register_next_step_handler(msg, add1)
+
+	if call.data[:14] == 'принятьзаявку_':
+		idasd = call.data[14:]
+		bot.delete_message(chat_id=call.message.chat.id,message_id=call.message.message_id)
+		main = telebot.types.ReplyKeyboardMarkup(True)
+		bot.answer_callback_query(callback_query_id=call.id, show_alert=True, text="Готово")
+		bot.send_message(idasd,eply_markup=main)
+
 
 def callback_inline(call):
     if call.message:
