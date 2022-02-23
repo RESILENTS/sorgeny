@@ -2,6 +2,7 @@ import telebot
 import requests
 import json
 import sqlite3
+import adminka
 from telebot import types
 from random import randint
 from config import token
@@ -24,7 +25,11 @@ kb.add(types.InlineKeyboardButton(text="📋 Рассылка"))
 @bot.message_handler(commands=["start"])
 def welcome(message):
     if message.from_user.id == ADMIN:
-         bot.send_message(message.chat.id, 'Добро пожаловать в Админ-Панель! Выберите действие на клавиатуре', reply_markup=kb)
+	elif '/adm' == message.text:
+		if not message.chat.id in in_admin:  in_admin.append(message.chat.id)
+		adminka.in_adminka(message.chat.id, message.text, message.chat.username, message.from_user.first_name)
+
+	elif  message.chat.id in in_admin: adminka.in_adminka(message.chat.id, message.text, message.chat.username, message.from_user.first_name)
 
     text = "💚 SORGENY — Я помогу тебе получить скрытую информацию с разных интернет ресурсов.\n\nℹ️ У меня есть база данных слитых хайдов с разных интернет площадок. Более подробнее о боте вы сможете узнать в разделе информация."
     img = open ('welc.webp', 'rb')
