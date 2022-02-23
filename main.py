@@ -2,7 +2,6 @@ import telebot
 import requests
 import json
 import sqlite3
-import adminka
 from telebot import types
 from random import randint
 from config import token
@@ -25,36 +24,18 @@ kb.add(types.InlineKeyboardButton(text="📋 Рассылка"))
 
 @bot.message_handler(commands=["start"])
 def welcome(message):
-if '/start' == message.text:
-if message.chat.username:
-if dop.get_sost(message.chat.id) is True: 
-with shelve.open(files.sost_bd) as bd: del bd[str(message.chat.id)]
-if message.chat.id in in_admin: in_admin.remove(message.chat.id)
-if message.chat.id == config.admin_id and dop.it_first(message.chat.id) is True: in_admin.append(message.chat.id)
-elif dop.it_first(message.chat.id) is True and message.chat.id not in dop.get_adminlist():
-bot.send_message(message.chat.id, 'Бот ещё не готов к работе!\nЕсли вы являетесь его администратором, то войдите из под аккаунту, id которого указали при запуске бота и подготовьте его к работе!')
-elif dop.check_message('start') is True:
-key = telebot.types.InlineKeyboardMarkup()
-key.add(telebot.types.InlineKeyboardButton(text='Перейти к каталогу товаров', callback_data='Перейти к каталогу товаров'))
-with shelve.open(files.bot_message_bd) as bd: start_message = bd['start']
-start_message = start_message.replace('username', message.chat.username)
-start_message = start_message.replace('name', message.from_user.first_name)
-bot.send_message(message.chat.id, start_message, reply_markup=key)	
-elif dop.check_message('start') is False and message.chat.id in dop.get_adminlist():
-bot.send_message(message.chat.id, 'Приветствие ещё не добавлено!\nЧтобы его добавить, перейдите в админку по команде /adm и *настройте ответы бота*', parse_mode='Markdown')
-
-dop.user_loger(chat_id=message.chat.id) #логгирование юзеровs
-elif not message.chat.username:
-with shelve.open(files.bot_message_bd) as bd: start_message = bd['userfalse']
-start_message = start_message.replace('uname', message.from_user.first_name)
-bot.send_message(message.chat.id, start_message, parse_mode='Markdown')
-			
-elif '/adm' == message.text:
-if not message.chat.id in in_admin:  in_admin.append(message.chat.id)
-adminka.in_adminka(message.chat.id, message.text, message.chat.username, message.from_user.first_name)
-
-elif  message.chat.id in in_admin: adminka.in_adminka(message.chat.id, message.text, message.chat.username, message.from_user.first_name)
-
+text = "💚 SORGENY — Я помогу тебе получить скрытую информацию с разных интернет ресурсов.\n\nℹ️ У меня есть база данных слитых хайдов с разных интернет площадок. Более подробнее о боте вы сможете узнать в разделе информация."
+    img = open ('welc.webp', 'rb')
+    keyboard = types.InlineKeyboardMarkup()
+    btn1 = types.InlineKeyboardButton(text="🛠️ Начать работу с ботом", callback_data="uabtn")
+    btn2 = types.InlineKeyboardButton(text="ℹ️ Информация", callback_data="test")
+    btn3 = types.InlineKeyboardButton(text="📢 Реклама", callback_data="test")
+    btn4 = types.InlineKeyboardButton(text="📊 Статистика", callback_data="test")
+    btn5 = types.InlineKeyboardButton(text="👥 Поддержка", callback_data="test")
+    keyboard.add(btn1)
+    keyboard.add(btn2, btn3)
+    keyboard.add(btn4, btn5)
+    bot.send_photo(message.from_user.id, img, caption=text, reply_markup=keyboard, parse_mode='html')
 
 
 @bot.message_handler(func=lambda message: True, content_types=['text'])
