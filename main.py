@@ -95,7 +95,7 @@ def podcategors(call):
         idasd = call.data[14:]
         bot.delete_message(chat_id=call.message.chat.id,message_id=call.message.message_id)
         main = telebot.types.ReplyKeyboardMarkup(True)
-        bot.send_message(idasd,reply_markup=main, call_data=add_link_db text='hhh')
+        bot.send_message(idasd,reply_markup=main, call_data=add_link_db, text='hhh')
 
     if call.data == 'add_link_db':
         global query1, query2
