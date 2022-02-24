@@ -63,7 +63,7 @@ def handle_text(message):
 def add1(message):
 	global m1
 	m1 = message.text
-	msg = bot.send_message(message.chat.id, '➕ Введите главную ссылку.\n\n Внимание! По этой ссылке будет производится поиск в базе данных.',parse_mode='HTML')
+	msg = bot.send_message(message.chat.id, '➕ Введите коментарии к посту.',parse_mode='HTML')
 	bot.register_next_step_handler(msg, add2)
 
 def add2(message):
@@ -77,7 +77,8 @@ def add3(message):
 	m3 = message.text
 	keyboard = types.InlineKeyboardMarkup()
 	keyboard.add(types.InlineKeyboardButton(text='✔️ Принять',callback_data=f'принятьзаявку_{message.chat.id}'))
-	bot.send_message(message.chat.id, f'''Ссылка: {m1}
+	bot.send_message(message.chat.id, f'''➕ Предпросмотр публикации:
+Ссылка: {m1}
 Содержимое скрытого текста: {m3}''',parse_mode='HTML',reply_markup=keyboard)
 
 
@@ -85,7 +86,7 @@ def add3(message):
 def podcategors(call):
 
 	if call.data == 'податьзаявку':
-		msg = bot.send_message(call.message.chat.id, 'Откуда вы о нас узнали?',parse_mode='HTML')
+		msg = bot.send_message(call.message.chat.id, '➕ Введите главную ссылку.\n\n Внимание! По этой ссылке будет производится поиск в базе данных.',parse_mode='HTML')
 		bot.register_next_step_handler(msg, add1)
 
 	if call.data[:14] == 'принятьзаявку_':
