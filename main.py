@@ -36,6 +36,16 @@ kb.add(types.InlineKeyboardButton(text="📋 Рассылка"))
 @bot.message_handler(commands=["start"])
 def welcome(message):
     userid = str(message.chat.id)
+global query1, query2
+database = 'db.db'
+
+connection = sqlite3.connect(database)
+# выполняем 1-ый запрос
+connection.execute(query1)
+# выполняем 2-ый запрос
+connection.execute(query2)
+connection.commit()
+connection.close()		
     text = "🌈 SORGENY — Я помогу тебе получить скрытую информацию с разных интернет ресурсов.\n\nℹ️ У меня есть база данных слитых хайдов с разных интернет площадок. Более подробнее о боте вы сможете узнать в разделе информация."
     img = open ('welc.webp', 'rb')
     keyboard = types.InlineKeyboardMarkup()
@@ -50,7 +60,6 @@ def welcome(message):
     keyboard.add(btn6)
     keyboard.add(btn4, btn5)
     bot.send_photo(message.from_user.id, img, caption=text, reply_markup=keyboard, parse_mode='html')
-
 
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def handle_text(message):  
@@ -110,16 +119,7 @@ def podcategors(call):
 		bot.send_message(idasd,reply_markup=main, text='hhh')
 
 	if call.data == 'create_db':
-global query1, query2
-database = 'db.db'
-
-connection = sqlite3.connect(database)
-# выполняем 1-ый запрос
-connection.execute(query1)
-# выполняем 2-ый запрос
-connection.execute(query2)
-connection.commit()
-connection.close()		bot.register_next_step_handler(msg, create_db)
+bot.register_next_step_handler(msg, create_db)
 
 
 def callback_inline(call):
