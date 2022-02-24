@@ -96,7 +96,7 @@ def podcategors(call):
 		msg = bot.send_message(call.message.chat.id, '➕ Введите главную ссылку.\n\n Внимание! По этой ссылке будет производится поиск в базе данных.',parse_mode='HTML')
 		bot.register_next_step_handler(msg, create_db)
 
-def create_db(id): 
+def create_db(message): 
     global create_db
     db=sqlite3.connect('db.db') 
     cursor=db.cursor() 
