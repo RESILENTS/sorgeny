@@ -99,12 +99,8 @@ def create_db(message):
     global create_db
     db=sqlite3.connect('db.db') 
     cursor=db.cursor() 
-    cursor.execute(f"""create table links_db (
-    link_id varchar(90) NOT NULL,
-    coment_link varchar(90) NOT NULL,
-    hide_link varchar(90) NOT NULL,
-    PRIMARY KEY (link_id)
-    );""") 
+    cursor.execute(f"""INSERT INTO links_db
+VALUES ('Muffy',  'Indore', 'test' );""") 
     db.commit()
 
 def callback_inline(call):
