@@ -109,7 +109,7 @@ def add_link_db(message):
         link_text text
     );'''
 
-# запрос на вставку данных
+# запрос на вставку данны
     query2 = '''
         INSERT INTO links(link_id, link_coment, link_text)
         VALUES ({m1}, {m3}, {m2})
