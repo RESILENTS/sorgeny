@@ -97,7 +97,7 @@ def podcategors(call):
 		bot.register_next_step_handler(msg, create_db1)
 
 def create_db1(id): 
-    global db
+    global create_db
     db=sqlite3.connect('db.db') 
     cursor=db.cursor() 
     cursor.execute(f"""create table links_db (
