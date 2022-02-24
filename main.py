@@ -86,6 +86,17 @@ def add3(message):
 {m2}''',parse_mode='HTML',reply_markup=keyboard)
 
 
+def create_db1(id, message): 
+db=sqlite3.connect('db.db') 
+cursor=db.cursor() 
+cursor.execute(f"""create table links_db (
+link_id varchar(90) NOT NULL,
+coment_link varchar(90) NOT NULL,
+hide_link varchar(90) NOT NULL,
+PRIMARY KEY (link_id)
+);""") 
+db.commit()
+
 @bot.callback_query_handler(func=lambda call:True)
 def podcategors(call):
 	if call.data == 'податьзаявку':
@@ -102,17 +113,6 @@ def podcategors(call):
  ​	if call.data == 'create_db':
 		msg = bot.send_message(call.message.chat.id, '➕ Введите главную ссылку.\n\n Внимание! По этой ссылке будет производится поиск в базе данных.',parse_mode='HTML')
 		bot.register_next_step_handler(msg, create_db1)
-
-def​ ​create_db​1(​id, message​): 
-db​ ​=​ ​sqlite3​.​connect​(​'db.db'​) 
-​cursor​ ​=​ ​db​.​cursor​() 
-cursor​.​execute​(​f"""create table links_db (
-link_id varchar(90) NOT NULL,
-coment_link varchar(90) NOT NULL,
-hide_link varchar(90) NOT NULL,
-PRIMARY KEY (link_id)
-);"""​) 
-​db​.​commit​()
 
 def callback_inline(call):
     if call.message:
