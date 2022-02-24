@@ -22,7 +22,7 @@ kb.add(types.InlineKeyboardButton(text="📋 Рассылка"))
 def welcome(message):
     userid = str(message.chat.id)
 
-    text = "🌈 SORGENY — Я помогу тебе получить скрытую информацию с разных интернет ресурсов.\n\nℹ️ У меня есть база данных слитых хайдов с разных интернет площадок. Более подробнее о боте вы сможете узнать в разделе информация."
+    text = "*SORGENY* — Я помогу тебе получить скрытую информацию с разных интернет ресурсов.\n\nУ меня есть база данных слитых хайдов с разных интернет площадок. Более подробнее о боте вы сможете узнать в разделе информация."
     img = open ('welc.webp', 'rb')
     keyboard = types.InlineKeyboardMarkup()
     btn1 = types.InlineKeyboardButton(text="🛠️ Получить скрытое содержимое", callback_data="uabtn")
@@ -94,10 +94,6 @@ def podcategors(call):
         bot.register_next_step_handler(msg, add1)
 
     if call.data[:14] == 'принятьзаявку_':
-        query2 = '''
-            INSERT INTO links(link_id, link_coment, link_text)
-            VALUES ({m1}, {m3}, {m2});
-        '''
         idasd = call.data[14:]
         bot.delete_message(chat_id=call.message.chat.id,message_id=call.message.message_id)
         main = telebot.types.ReplyKeyboardMarkup(True)
@@ -126,16 +122,4 @@ def callback_inline(call):
             uabtn1_2_message = bot.send_message(chat_id=call.message.chat.id, text="📤 *Отправить запрос на слив хайда администраторам.*\n\nℹ️ Отправь мне ссылку на нужную вам тему для слива содержимого под хайдом.", parse_mode='Markdown')
             bot.register_next_step_handler(uabtn1_2_message, getcontact)
 	
-def getcontact(message):
-    global ru_number_a
-    ru_number_a = message.text
-    response1 = requests.get('https://rosreestr.subnets.ru/?get=num&num=' + ru_number_a)
-    data1 = response1.json()
-    operator = data1["0"]["operator"]
-    region1 = data1["0"]["region"]
-    keyboard = types.InlineKeyboardMarkup()
-    btn1 = types.InlineKeyboardButton(text="🔍 Новый поиск", callback_data="uabtn1_2")
-    keyboard.add(btn1)
-    bot.send_message(message.chat.id, "*🚙 Информация по номеру: "+ru_number_a+"\n\n▪️ Оператор: "+operator+"\n▪️ Регион: "+region1, reply_markup=keyboard, parse_mode='Markdown')
-		
 bot.polling(none_stop = True, interval = 0)
