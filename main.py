@@ -10,18 +10,6 @@ bot=telebot.TeleBot(token)
 ADMIN = 641892529
 idcanal = 1001418408821
 
-query1 = '''
-CREATE TABLE links(
-    link_id text primary key,
-    link_coment text,
-    link_text text
-);'''
-
-# запрос на вставку данных
-query2 = '''
-INSERT INTO links(link_id, link_coment, link_text)
-VALUES ({m1}, {m3}, {m2})
-'''
 
 conn = sqlite3.connect('db.db', check_same_thread=False)
 cursor = conn.cursor()
@@ -34,14 +22,6 @@ kb.add(types.InlineKeyboardButton(text="📋 Рассылка"))
 @bot.message_handler(commands=["start"])
 def welcome(message):
     userid = str(message.chat.id)
-    global query1, query2
-    database = 'db.db'
-
-    connection = sqlite3.connect(database)
-    connection.execute(query1)
-    connection.execute(query2)
-    connection.commit()
-    connection.close()
 
     text = "🌈 SORGENY — Я помогу тебе получить скрытую информацию с разных интернет ресурсов.\n\nℹ️ У меня есть база данных слитых хайдов с разных интернет площадок. Более подробнее о боте вы сможете узнать в разделе информация."
     img = open ('welc.webp', 'rb')
@@ -94,7 +74,7 @@ def add3(message):
 	global m3
 	m3 = message.text
 	keyboard = types.InlineKeyboardMarkup()
-	keyboard.add(types.InlineKeyboardButton(text='✅ Опубликовать пост',callback_data=f'принятьзаявку_{message.chat.id}'))
+	keyboard.add(types.InlineKeyboardButton(text='✅ Опубликовать пост',callback_data=f'п'))
 	bot.send_message(message.chat.id, f'''Предпросмотр публикации:
 
 ◾ Ссылка: {m1}
@@ -102,6 +82,22 @@ def add3(message):
 
 ◾ Коментарии к публикации:
 {m2}''',parse_mode='HTML',reply_markup=keyboard)
+
+def add_link_db(message):
+    global query1, query2
+    query1 = '''
+        CREATE TABLE links(
+        link_id text primary key,
+        link_coment text,
+        link_text text
+    );'''
+
+# запрос на вставку данных
+    query2 = '''
+        INSERT INTO links(link_id, link_coment, link_text)
+        VALUES ({m1}, {m3}, {m2})
+    '''
+
 
 @bot.callback_query_handler(func=lambda call:True)
 def podcategors(call):
@@ -112,8 +108,17 @@ def podcategors(call):
 	if call.data[:14] == 'принятьзаявку_':
 		idasd = call.data[14:]
 		bot.delete_message(chat_id=call.message.chat.id,message_id=call.message.message_id)
-		main = telebot.types.ReplyKeyboardMarkup(True)
-		bot.send_message(idasd,reply_markup=main, text='hhh')
+	        main = telebot.types.ReplyKeyboardMarkup(True)
+                bot.send_message(idasd,reply_markup=main, text='hhh')
+
+        if call.data == 'add_link_db:
+                database = 'db.db'
+
+                connection = sqlite3.connect(database)
+                connection.execute(query1)
+                connection.execute(query2)
+                connection.commit()
+                connection.close()
 
 def callback_inline(call):
     if call.message:
