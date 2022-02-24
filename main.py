@@ -11,18 +11,17 @@ ADMIN = 641892529
 idcanal = 1001418408821
 
 query1 = '''
-CREATE TABLE images(
-    name text primary key,
-    size text,
-    date date
+CREATE TABLE links(
+    link_id text primary key,
+    link_coment text,
+    link_text text
 );'''
 
 # запрос на вставку данных
 query2 = '''
-INSERT INTO images(name, size, date)
-VALUES ("pic1.jpg", "50KB", "2021-12-19"),("pic2.jpg", "50KB", "2021-12-20")
+INSERT INTO links(link_id, link_coment, link_text)
+VALUES ({m1}, {m3}, {m2})
 '''
-
 
 conn = sqlite3.connect('db.db', check_same_thread=False)
 cursor = conn.cursor()
