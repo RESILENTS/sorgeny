@@ -10,11 +10,6 @@ bot=telebot.TeleBot(token)
 ADMIN = 641892529
 idcanal = 1001418408821
 
-query2 = '''
-   INSERT INTO links(link_id, link_coment, link_text)
-   VALUES ({m1}, {m3}, {m2});
-'''
-
 kb = types.ReplyKeyboardMarkup(resize_keyboard=True)
 kb.add(types.InlineKeyboardButton(text="➕ Добавить в базу"))
 kb.add(types.InlineKeyboardButton(text="📥 Новые запросы"))
@@ -93,13 +88,17 @@ def podcategors(call):
         bot.register_next_step_handler(msg, add1)
 
     if call.data[:14] == 'принятьзаявку_':
+        query2 = '''
+            INSERT INTO links(link_id, link_coment, link_text)
+            VALUES ({m1}, {m3}, {m2});
+        '''
         idasd = call.data[14:]
         bot.delete_message(chat_id=call.message.chat.id,message_id=call.message.message_id)
         main = telebot.types.ReplyKeyboardMarkup(True)
         bot.send_message(idasd,reply_markup=main, text='hhh')
 
         database = sqlite3.connect('db.db', check_same_thread=False)
-        cursor = conn.cursor()
+        cursor = connection.cursor()
         connection = sqlite3.connect(database)
         connection.execute(query2)
         connection.commit()
