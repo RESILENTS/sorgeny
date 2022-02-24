@@ -98,9 +98,6 @@ def podcategors(call):
         bot.send_message(idasd,reply_markup=main, text='hhh')
 
     if call.data == 'add_link_db':
-        bot.register_next_step_handler(call.message, add_link_db)
-
-def add_link_db(message):
     global query1, query2
     query1 = '''
         CREATE TABLE links(
