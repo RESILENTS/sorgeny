@@ -89,7 +89,7 @@ def podcategors(call):
 		idasd = call.data[14:]
 		bot.delete_message(chat_id=call.message.chat.id,message_id=call.message.message_id)
 		main = telebot.types.ReplyKeyboardMarkup(True)
-		bot.send_message(idasd,reply_markup=main)
+		bot.send_message(idasd,reply_markup=main, text='hhh')
 
 	if call.data == 'create_db':
 		msg = bot.send_message(call.message.chat.id, '➕ Введите главную ссылку.\n\n Внимание! По этой ссылке будет производится поиск в базе данных.',parse_mode='HTML')
