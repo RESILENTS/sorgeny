@@ -40,12 +40,12 @@ def handle_text(message):
     if message.text == "admin666":
         if message.from_user.id == ADMIN:
             keyboard = types.InlineKeyboardMarkup()
-            btn1 = types.InlineKeyboardButton(text="🔗 Добавить новую публикацию", callback_data="go_to_db")
-            btn2 = types.InlineKeyboardButton(text="📥 Новые запросы", callback_data="test")
+            btn1 = types.InlineKeyboardButton(text="🔗 Новый пост", callback_data="go_to_db")
+            btn2 = types.InlineKeyboardButton(text="📥 Запросы", callback_data="test")
             btn3 = types.InlineKeyboardButton(text="📃 Рассылка", callback_data="test")
             keyboard.add(btn1, btn2)
             keyboard.add(btn3)
-            bot.send_message(message.chat.id, "Для публикации нового поста нажмите на кнопку ниже.", reply_markup=keyboard, parse_mode='Markdown')
+            bot.send_message(message.chat.id, "Добро пожаловать в админ панель.", reply_markup=keyboard, parse_mode='Markdown')
 
     if message.text == "ℹ Информация":  
         keyboard = types.InlineKeyboardMarkup()
