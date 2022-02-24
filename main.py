@@ -39,12 +39,12 @@ def welcome(message):
 def handle_text(message):  
     if message.text == "admin666":
         if message.from_user.id == ADMIN:
-            kb = types.ReplyKeyboardMarkup(resize_keyboard=True)
-            btn1 = types.InlineKeyboardButton(text="➕ Добавить в базу", callback_data="go_to_db")
-            btn2 = types.InlineKeyboardButton(text="📥 Запросы")
-            btn3 = types.InlineKeyboardButton(text="📋 Рассылка")
-            kb.add(btn1, btn2)
-            kb.add(btn3)
+            keyboard = types.InlineKeyboardMarkup()
+            btn1 = types.InlineKeyboardButton(text="🔗 Добавить новую публикацию", callback_data="go_to_db")
+            btn2 = types.InlineKeyboardButton(text="📥 Новые запросы", callback_data="test")
+            btn3 = types.InlineKeyboardButton(text="📃 Рассылка", callback_data="test")
+            keyboardb.add(btn1, btn2)
+            keyboardb.add(btn3)
             bot.send_message(message.chat.id, "Для публикации нового поста нажмите на кнопку ниже.", reply_markup=keyboard, parse_mode='Markdown')
 
     if message.text == "ℹ Информация":  
