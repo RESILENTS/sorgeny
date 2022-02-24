@@ -98,7 +98,7 @@ def podcategors(call):
 		bot.answer_callback_query(callback_query_id=call.id, show_alert=True, call_data=create_db, text="Готово")
 		bot.send_message(idasd,reply_markup=main)
 
- ​	if call.data == 'create_db':
+	if call.data == 'create_db':
 		msg = bot.send_message(call.message.chat.id, '➕ Введите главную ссылку.\n\n Внимание! По этой ссылке будет производится поиск в базе данных.',parse_mode='HTML')
 		bot.register_next_step_handler(msg, create_db1)
 
