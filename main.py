@@ -110,6 +110,7 @@ def podcategors(call):
 		bot.send_message(idasd,reply_markup=main, text='hhh')
 
 	if call.data == 'create_db':
+global query1, query2
 database = 'db.db'
 
 connection = sqlite3.connect(database)
