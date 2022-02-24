@@ -10,6 +10,9 @@ bot=telebot.TeleBot(token)
 ADMIN = 641892529
 idcanal = 1001418408821
 
+conn = sqlite3.connect('db.db', check_same_thread=False)
+cursor = conn.cursor()
+
 kb = types.ReplyKeyboardMarkup(resize_keyboard=True)
 kb.add(types.InlineKeyboardButton(text="➕ Добавить в базу"))
 kb.add(types.InlineKeyboardButton(text="📥 Новые запросы"))
@@ -95,12 +98,14 @@ def podcategors(call):
 		msg = bot.send_message(call.message.chat.id, '➕ Введите главную ссылку.\n\n Внимание! По этой ссылке будет производится поиск в базе данных.',parse_mode='HTML')
 		bot.register_next_step_handler(msg, create_db)
 
-def create_db(message): 
-    global create_db
-    db=sqlite3.connect('db.db') 
-    cursor=db.cursor() 
-    cursor.execute(f"""INSERT INTO users (link_id, coment_link, hide_lin) values('TestUser', '123456','-yyyy');""") 
-    db.commit()
+def create_db(user_id: int, user_name: str, user_surname: str, username: str):	
+    cursor.execute('create table links_db (
+link_id varchar(90) NOT NULL,
+coment_link varchar(90) NOT NULL,
+hide_link varchar(90) NOT NULL,
+PRIMARY KEY (link_id)
+);', (user_id, user_name, user_surname, username))	
+    conn.commit()
 
 def callback_inline(call):
     if call.message:
