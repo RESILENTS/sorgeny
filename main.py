@@ -95,17 +95,30 @@ def podcategors(call):
 		bot.send_message(idasd,reply_markup=main, text='hhh')
 
 	if call.data == 'create_db':
-		msg = bot.send_message(call.message.chat.id, '➕ Введите главную ссылку.\n\n Внимание! По этой ссылке будет производится поиск в базе данных.',parse_mode='HTML')
-		bot.register_next_step_handler(msg, create_db)
+database = 'database.db'
+
+connection = sqlite3.connect(database)
+# выполняем 1-ый запрос
+connection.execute(query1)
+# выполняем 2-ый запрос
+connection.execute(query2)
+connection.commit()
+connection.close()		bot.register_next_step_handler(msg, create_db)
 
 def create_db(user_id: int, user_name: str, user_surname: str, username: str):	
-    cursor.execute('create table links_db (
-link_id varchar(90) NOT NULL,
-coment_link varchar(90) NOT NULL,
-hide_link varchar(90) NOT NULL,
-PRIMARY KEY (link_id)
-);', (user_id, user_name, user_surname, username))	
-    conn.commit()
+query1 = '''
+CREATE TABLE images(
+    name text primary key,
+    size text,
+    date date
+);'''
+
+# запрос на вставку данных
+query2 = '''
+INSERT INTO images(name, size, date)
+VALUES ("pic1.jpg", "50KB", "2021-12-19"),("pic2.jpg", "50KB", "2021-12-20")
+'''
+
 
 def callback_inline(call):
     if call.message:
