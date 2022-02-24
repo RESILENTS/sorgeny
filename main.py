@@ -95,7 +95,7 @@ def podcategors(call):
 		bot.send_message(idasd,reply_markup=main, text='hhh')
 
 	if call.data == 'create_db':
-database = 'database.db'
+database = 'db.db'
 
 connection = sqlite3.connect(database)
 # выполняем 1-ый запрос
