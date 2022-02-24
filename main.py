@@ -83,7 +83,8 @@ def add3(message):
 {m2}''',parse_mode='HTML',reply_markup=keyboard)
 
 def db_table_val(link_id: str, link_coment: str, link_text: str):
-    cursor.execute(f'''INSERT INTO links (link_id, link_coment, link_text) VALUES (link_id, link_coment, link_text)''')
+    params = (link_id, link_coment, link_text)
+    cursor.execute(f'''INSERT INTO links VALUES ({m1}, {m3}, {m2})''', params)
     conn.commit()
 
 @bot.callback_query_handler(func=lambda call:True)
