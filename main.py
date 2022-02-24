@@ -81,7 +81,7 @@ def add3(message):
 ◾ Содержимое скрытого текста: {m3}
 
 ◾ Коментарии к публикации:
-{m2}''',parse_mode='HTML',reply_markup=keyboard)
+{m2}''',parse_mode='HTML',reply_markup=keyboard, add_link_db)
 
 
 
@@ -93,7 +93,7 @@ def podcategors(call):
 
     if call.data[:14] == 'принятьзаявку_':
         idasd = call.data[14:]
-        bot.delete_message(chat_id=call.message.chat.id,message_id=call.message.message_id, add_link_db)
+        bot.delete_message(chat_id=call.message.chat.id,message_id=call.message.message_id)
         main = telebot.types.ReplyKeyboardMarkup(True)
         bot.send_message(idasd,reply_markup=main, text='hhh')
 
