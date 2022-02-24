@@ -87,15 +87,16 @@ def add3(message):
 
 
 def create_db1(id, message): 
-db=sqlite3.connect('db.db') 
-cursor=db.cursor() 
-cursor.execute(f"""create table links_db (
-link_id varchar(90) NOT NULL,
-coment_link varchar(90) NOT NULL,
-hide_link varchar(90) NOT NULL,
-PRIMARY KEY (link_id)
-);""") 
-db.commit()
+  global db
+  db=sqlite3.connect('db.db') 
+  cursor=db.cursor() 
+  cursor.execute(f"""create table links_db (
+  link_id varchar(90) NOT NULL,
+  coment_link varchar(90) NOT NULL,
+  hide_link varchar(90) NOT NULL,
+  PRIMARY KEY (link_id)
+  );""") 
+  db.commit()
 
 @bot.callback_query_handler(func=lambda call:True)
 def podcategors(call):
