@@ -22,18 +22,16 @@ kb.add(types.InlineKeyboardButton(text="📋 Рассылка"))
 def welcome(message):
     userid = str(message.chat.id)
 
-    text = "*SORGENY* — Я помогу тебе получить скрытую информацию с разных интернет ресурсов.\n\nУ меня есть база данных слитых хайдов с разных интернет площадок. Более подробнее о боте вы сможете узнать в разделе информация."
+    text = "SORGENY — Я помогу тебе получить скрытую информацию с разных интернет ресурсов.\n\nУ меня есть база данных слитых хайдов с разных интернет площадок. Более подробнее о боте вы сможете узнать в разделе информация."
     img = open ('welc.webp', 'rb')
     keyboard = types.InlineKeyboardMarkup()
-    btn1 = types.InlineKeyboardButton(text="🛠️ Получить скрытое содержимое", callback_data="uabtn")
+    btn1 = types.InlineKeyboardButton(text="🔗 Ввести ссылку для поиска", callback_data="uabtn")
     btn2 = types.InlineKeyboardButton(text="ℹ️ Информация", callback_data="test")
-    btn3 = types.InlineKeyboardButton(text="📢 Наши проекты", callback_data="test")
+    btn3 = types.InlineKeyboardButton(text="📢 Наш чат", callback_data="test")
     btn4 = types.InlineKeyboardButton(text="📊 Статистика", callback_data="test")
-    btn6 = types.InlineKeyboardButton(text="📃 Открыть главное меню", callback_data="test")
     btn5 = types.InlineKeyboardButton(text="👥 Поддержка", callback_data="test")
     keyboard.add(btn1)
     keyboard.add(btn2, btn3)
-    keyboard.add(btn6)
     keyboard.add(btn4, btn5)
     bot.send_photo(message.from_user.id, img, caption=text, reply_markup=keyboard, parse_mode='html')
 
