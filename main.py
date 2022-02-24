@@ -10,7 +10,6 @@ bot=telebot.TeleBot(token)
 ADMIN = 641892529
 idcanal = 1001418408821
 
-        global query1, query2
         query1 = '''
             CREATE TABLE links(
             link_id text primary key,
