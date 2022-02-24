@@ -74,7 +74,7 @@ def add3(message):
 	global m3
 	m3 = message.text
 	keyboard = types.InlineKeyboardMarkup()
-	keyboard.add(types.InlineKeyboardButton(text='✅ Опубликовать пост',callback_data=f'п'))
+	keyboard.add(types.InlineKeyboardButton(text='✅ Опубликовать пост',callback_data=f'принятьзаявку_{message.chat.id}'))
 	bot.send_message(message.chat.id, f'''Предпросмотр публикации:
 
 ◾ Ссылка: {m1}
