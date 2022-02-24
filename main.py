@@ -10,6 +10,9 @@ bot=telebot.TeleBot(token)
 ADMIN = 641892529
 idcanal = 1001418408821
 
+conn = sqlite3.connect('db.db', check_same_thread=False)
+cursor = conn.cursor()
+
 kb = types.ReplyKeyboardMarkup(resize_keyboard=True)
 kb.add(types.InlineKeyboardButton(text="➕ Добавить в базу"))
 kb.add(types.InlineKeyboardButton(text="📥 Новые запросы"))
