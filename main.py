@@ -81,7 +81,7 @@ def add3(message):
 ◾ Содержимое скрытого текста: {m3}
 
 ◾ Коментарии к публикации:
-{m2}''',parse_mode='HTML',reply_markup=keyboard, add_link_db)
+{m2}''',parse_mode='HTML',reply_markup=keyboard)
 
 
 
@@ -96,8 +96,6 @@ def podcategors(call):
         bot.delete_message(chat_id=call.message.chat.id,message_id=call.message.message_id)
         main = telebot.types.ReplyKeyboardMarkup(True)
         bot.send_message(idasd,reply_markup=main, text='hhh')
-
-    if call.data == 'add_link_db':
         global query1, query2
         query1 = '''
             CREATE TABLE links(
@@ -106,7 +104,6 @@ def podcategors(call):
             link_text text
         );'''
 
-# запрос на вставку данны
         query2 = '''
             INSERT INTO links(link_id, link_coment, link_text)
             VALUES ({m1}, {m3}, {m2})
