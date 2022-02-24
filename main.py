@@ -14,8 +14,6 @@ query2 = '''
    INSERT INTO links(link_id, link_coment, link_text)
    VALUES ({m1}, {m3}, {m2});
 '''
-conn = sqlite3.connect('db.db', check_same_thread=False)
-cursor = conn.cursor()
 
 kb = types.ReplyKeyboardMarkup(resize_keyboard=True)
 kb.add(types.InlineKeyboardButton(text="➕ Добавить в базу"))
@@ -100,7 +98,8 @@ def podcategors(call):
         main = telebot.types.ReplyKeyboardMarkup(True)
         bot.send_message(idasd,reply_markup=main, text='hhh')
 
-        database = 'db.db'
+        database = sqlite3.connect('db.db', check_same_thread=False)
+        cursor = conn.cursor()
         connection = sqlite3.connect(database)
         connection.execute(query2)
         connection.commit()
