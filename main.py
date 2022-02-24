@@ -138,3 +138,15 @@ def getcontact(message):
     keyboard.add(btn1)
     bot.send_message(message.chat.id, "*🚙 Информация по номеру: "+ru_number_a+"\n\n▪️ Оператор: "+operator+"\n▪️ Регион: "+region1, reply_markup=keyboard, parse_mode='Markdown')
 		
+ 
+  
+ ​if​ ​__name__​ ​==​ ​'__main__'​: 
+ ​        ​try​: 
+ ​                ​bot​.​polling​(​none_stop​ ​=​ ​True​, ​interval​ ​=​ ​0​) 
+ ​        ​except​ ​Exception​ ​as​ ​e​: 
+ ​                ​bot​.​send_message​(​admin_chat​, ​text​=​f"<b>Возникла ошибка</b>​\n​\n​{​e​}​"​, ​parse_mode​=​"HTML"​) 
+ ​                ​while​ ​True​: 
+ ​                        ​try​: 
+ ​                                ​bot​.​polling​(​none_stop​ ​=​ ​True​, ​interval​ ​=​ ​0​) 
+ ​                        ​except​ ​Exception​ ​as​ ​e​: 
+ ​                                ​bot​.​send_message​(​admin_chat​, ​text​=​f"<b>Возникла ошибка!</b>​\n​\n​{​e​}​"​, ​parse_mode​=​"HTML"​)
