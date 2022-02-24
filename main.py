@@ -10,13 +10,6 @@ bot=telebot.TeleBot(token)
 ADMIN = 641892529
 idcanal = 1001418408821
 
-query1 = '''
-    CREATE TABLE links(
-    link_id text primary key,
-    link_coment text,
-    link_text text
-);'''
-
 query2 = '''
    INSERT INTO links(link_id, link_coment, link_text)
    VALUES ({m1}, {m3}, {m2});
@@ -109,7 +102,6 @@ def podcategors(call):
 
         database = 'db.db'
         connection = sqlite3.connect(database)
-        connection.execute(query1)
         connection.execute(query2)
         connection.commit()
         connection.close()
