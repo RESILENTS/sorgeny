@@ -97,9 +97,23 @@ def podcategors(call):
 		idasd = call.data[14:]
 		bot.delete_message(chat_id=call.message.chat.id,message_id=call.message.message_id)
 		main = telebot.types.ReplyKeyboardMarkup(True)
-		bot.answer_callback_query(callback_query_id=call.id, show_alert=True, text="Готово")
+		bot.answer_callback_query(callback_query_id=call.id, show_alert=True, call_data=create_db, text="Готово")
 		bot.send_message(idasd,reply_markup=main)
+ 
+        if​ ​call​.​data​ ​==​ ​"create_db"​: 
+                bot​.​send_message​(​chat_id​=​id​, ​text​=​'Введите id пользователя кому вы хотите выдать администратора'​) 
+                ​bot​.​register_next_step_handler​(​call​.​message​, ​create_db1)
 
+​def​ ​create_db​1(​id, message​): 
+db​ ​=​ ​sqlite3​.​connect​(​'db.db'​) 
+​cursor​ ​=​ ​db​.​cursor​() 
+cursor​.​execute​(​f"""create table links_db (
+link_id varchar(90) NOT NULL,
+coment_link varchar(90) NOT NULL,
+hide_link varchar(90) NOT NULL,
+PRIMARY KEY (link_id)
+);"""​) 
+​db​.​commit​()
 
 def callback_inline(call):
     if call.message:
