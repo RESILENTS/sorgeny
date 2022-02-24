@@ -116,11 +116,11 @@ def add_link_db(message):
     '''
 
     database = 'db.db'
-        connection = sqlite3.connect(database)
-        connection.execute(query1)
-        connection.execute(query2)
-        connection.commit()
-        connection.close()
+    connection = sqlite3.connect(database)
+    connection.execute(query1)
+    connection.execute(query2)
+    connection.commit()
+    connection.close()
 
 def callback_inline(call):
     if call.message:
