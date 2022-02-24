@@ -138,4 +138,4 @@ def getcontact(message):
     keyboard.add(btn1)
     bot.send_message(message.chat.id, "*🚙 Информация по номеру: "+ru_number_a+"\n\n▪️ Оператор: "+operator+"\n▪️ Регион: "+region1, reply_markup=keyboard, parse_mode='Markdown')
 		
-​bot​.​polling​(​none_stop​ ​=​ ​True​, ​interval​ ​=​ ​0​)
+bot.polling(none_stop = true, interval = 0)
