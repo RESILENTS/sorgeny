@@ -37,12 +37,14 @@ def welcome(message):
 
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def handle_text(message):  
-    if message.text == "➕ Добавить в базу":
+    if message.text == "admin666":
         if message.from_user.id == ADMIN:
-            keyboard = types.InlineKeyboardMarkup()
-            btn1 = types.InlineKeyboardButton(text="➕ Добавить", callback_data="податьзаявку")
-            btn2 = types.InlineKeyboardButton(text="📃 Меню", callback_data="test")
-            keyboard.add(btn1, btn2)
+            kb = types.ReplyKeyboardMarkup(resize_keyboard=True)
+            btn1 = types.InlineKeyboardButton(text="➕ Добавить в базу", callback_data="go_to_db")
+            btn2 = types.InlineKeyboardButton(text="📥 Запросы")
+            btn3 = types.InlineKeyboardButton(text="📋 Рассылка")
+            kb.add(btn1, btn2)
+            kb.add(btn3)
             bot.send_message(message.chat.id, "Для публикации нового поста нажмите на кнопку ниже.", reply_markup=keyboard, parse_mode='Markdown')
 
     if message.text == "ℹ Информация":  
@@ -87,7 +89,7 @@ def db_table_val(link_id: str, link_coment: str, link_text: str):
 
 @bot.callback_query_handler(func=lambda call:True)
 def podcategors(call):
-    if call.data == 'податьзаявку':
+    if call.data == 'go_to_db':
         msg = bot.send_message(call.message.chat.id, '➕ Введите главную ссылку.\n\n Внимание! По этой ссылке будет производится поиск в базе данных.',parse_mode='HTML')
         bot.register_next_step_handler(msg, add1)
 
