@@ -101,8 +101,8 @@ def podcategors(call):
 		bot.send_message(idasd,reply_markup=main)
 
 if call.data == 'create_db':
-bot​.​send_message​(​chat_id​=​call​, ​text​=​'Введите id пользователя кому вы хотите выдать администратора'​) 
-​bot​.​register_next_step_handler​(​call​.​message​, ​create_db1)
+bot.send_message(chat_id=call, text="666")
+bot​.​register_next_step_handler​(​call​.​message​, ​create_db1)
 
 ​def​ ​create_db​1(​id, message​): 
 db​ ​=​ ​sqlite3​.​connect​(​'db.db'​) 
