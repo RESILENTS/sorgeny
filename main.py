@@ -10,6 +10,21 @@ bot=telebot.TeleBot(token)
 ADMIN = 641892529
 idcanal = 1001418408821
 
+def create_db(user_id: int, user_name: str, user_surname: str, username: str):	
+query1 = '''
+CREATE TABLE images(
+    name text primary key,
+    size text,
+    date date
+);'''
+
+# запрос на вставку данных
+query2 = '''
+INSERT INTO images(name, size, date)
+VALUES ("pic1.jpg", "50KB", "2021-12-19"),("pic2.jpg", "50KB", "2021-12-20")
+'''
+
+
 conn = sqlite3.connect('db.db', check_same_thread=False)
 cursor = conn.cursor()
 
@@ -104,20 +119,6 @@ connection.execute(query1)
 connection.execute(query2)
 connection.commit()
 connection.close()		bot.register_next_step_handler(msg, create_db)
-
-def create_db(user_id: int, user_name: str, user_surname: str, username: str):	
-query1 = '''
-CREATE TABLE images(
-    name text primary key,
-    size text,
-    date date
-);'''
-
-# запрос на вставку данных
-query2 = '''
-INSERT INTO images(name, size, date)
-VALUES ("pic1.jpg", "50KB", "2021-12-19"),("pic2.jpg", "50KB", "2021-12-20")
-'''
 
 
 def callback_inline(call):
