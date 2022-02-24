@@ -116,10 +116,6 @@ def podcategors(call):
 		main = telebot.types.ReplyKeyboardMarkup(True)
 		bot.send_message(idasd,reply_markup=main, text='hhh')
 
-	if call.data == 'create_db':
-bot.register_next_step_handler(msg, create_db)
-
-
 def callback_inline(call):
     if call.message:
         if call.data == "uabtn":
