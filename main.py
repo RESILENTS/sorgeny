@@ -99,8 +99,7 @@ def create_db(message):
     global create_db
     db=sqlite3.connect('db.db') 
     cursor=db.cursor() 
-    cursor.execute(f"""INSERT INTO links_db
-VALUES ('Muffy',  'Indore', 'test' );""") 
+    cursor.execute(f"""INSERT INTO users (link_id, coment_link, hide_lin) values('TestUser', '123456','-yyyy')""") 
     db.commit()
 
 def callback_inline(call):
