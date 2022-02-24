@@ -97,7 +97,7 @@ def podcategors(call):
         main = telebot.types.ReplyKeyboardMarkup(True)
         bot.send_message(idasd,reply_markup=main, text='hhh')
 
-    if call.data == 'add_link_db:
+    if call.data == 'add_link_db':
         bot​.​register_next_step_handler​(​call​.​message​, ​add_link_db)
 
 def add_link_db(message):
