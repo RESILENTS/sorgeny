@@ -99,7 +99,6 @@ def podcategors(call):
 		main = telebot.types.ReplyKeyboardMarkup(True)
 		bot.answer_callback_query(callback_query_id=call.id, show_alert=True, call_data=create_db, text="Готово")
 		bot.send_message(idasd,reply_markup=main)
-
         if call.data == "create_db":
                 bot.register_next_step_handler(call.message, create_db1)
 ​
