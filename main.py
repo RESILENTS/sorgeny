@@ -98,26 +98,26 @@ def podcategors(call):
         bot.send_message(idasd,reply_markup=main, text='hhh')
 
     if call.data == 'add_link_db':
-    global query1, query2
-    query1 = '''
-        CREATE TABLE links(
-        link_id text primary key,
-        link_coment text,
-        link_text text
-    );'''
+        global query1, query2
+        query1 = '''
+            CREATE TABLE links(
+            link_id text primary key,
+            link_coment text,
+            link_text text
+        );'''
 
 # запрос на вставку данны
-    query2 = '''
-        INSERT INTO links(link_id, link_coment, link_text)
-        VALUES ({m1}, {m3}, {m2})
-    '''
+        query2 = '''
+            INSERT INTO links(link_id, link_coment, link_text)
+            VALUES ({m1}, {m3}, {m2})
+        '''
 
-    database = 'db.db'
-    connection = sqlite3.connect(database)
-    connection.execute(query1)
-    connection.execute(query2)
-    connection.commit()
-    connection.close()
+        database = 'db.db'
+        connection = sqlite3.connect(database)
+        connection.execute(query1)
+        connection.execute(query2)
+        connection.commit()
+        connection.close()
 
 def callback_inline(call):
     if call.message:
