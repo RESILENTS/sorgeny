@@ -10,7 +10,6 @@ bot=telebot.TeleBot(token)
 ADMIN = 641892529
 idcanal = 1001418408821
 
-def create_db(user_id: int, user_name: str, user_surname: str, username: str):	
 query1 = '''
 CREATE TABLE images(
     name text primary key,
