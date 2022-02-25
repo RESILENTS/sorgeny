@@ -18,10 +18,17 @@ kb.add(types.InlineKeyboardButton(text="➕ Добавить в базу"))
 kb.add(types.InlineKeyboardButton(text="📥 Новые запросы"))
 kb.add(types.InlineKeyboardButton(text="📋 Рассылка"))
 
+
+
 @bot.message_handler(commands=["start"])
 def welcome(message):
-    userid = str(message.chat.id)
+    keyboard = types.ReplyKeyboardMarkup()
+    btn_main1 = types.KeyboardButton(text="📩 Получить хайд")
+    btn_main2 = types.KeyboardButton(text="📤 Новый запрос")
+    keyboard.add(btn_main1, btn_main2)
+    await message.answer("Как подавать котлеты?", reply_markup=keyboard)
 
+    userid = str(message.chat.id)
     text = "SORGENY — Я помогу тебе получить скрытую информацию с разных интернет ресурсов.\n\nУ меня есть база данных слитых хайдов с разных интернет площадок. Более подробнее о боте вы сможете узнать в разделе информация."
     img = open ('welc.webp', 'rb')
     keyboard = types.InlineKeyboardMarkup()
