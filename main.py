@@ -16,7 +16,7 @@ cursor = conn.cursor()
 @bot.message_handler(commands=["start"])
 def welcome(message):
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    btn_main1 = types.KeyboardButton(text="📩 Получить хайд", callback_data="test")
+    btn_main1 = types.KeyboardButton(text="📩 Получить хайд")
     btn_main2 = types.KeyboardButton(text="📤 Новый запрос")
     keyboard.add(btn_main1, btn_main2)
     bot.send_message(message.chat.id, '🏠 Главное меню',parse_mode='HTML', reply_markup=keyboard)
