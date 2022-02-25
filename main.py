@@ -16,12 +16,12 @@ cursor = conn.cursor()
 @bot.message_handler(commands=["start"])
 def welcome(message):
     global go_to_menu, msg_menu
-    msg_menu = bot.send_message(message.chat.id, '🏠 Меню',parse_mode='HTML')
+    msg_menu = bot.send_message(message.chat.id, '🏠 Меню',parse_mode='HTML', reply_markup=keyboard)
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
     btn_main1 = types.KeyboardButton(text="📩 Получить хайд")
     btn_main2 = types.KeyboardButton(text="📤 Новый запрос")
     keyboard.add(btn_main1, btn_main2)
-    bot.register_next_step_handler(msg_menu, go_to_menu, reply_markup=keyboard)
+    bot.register_next_step_handler(msg_menu, go_to_menu)
 
     userid = str(message.chat.id)
 
