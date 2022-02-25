@@ -14,7 +14,6 @@ conn = sqlite3.connect('db.db', check_same_thread=False)
 cursor = conn.cursor()
 
 def getlink1(message):
-    try:
         global exists, get_link_m
         sqlite_connection = sqlite3.connect('db.db')
         cursor = sqlite_connection.cursor()
