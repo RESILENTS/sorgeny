@@ -21,7 +21,7 @@ def welcome(message):
     btn_main1 = types.KeyboardButton(text="📩 Получить хайд")
     btn_main2 = types.KeyboardButton(text="📤 Новый запрос")
     keyboard.add(btn_main1, btn_main2)
-    bot.send_message(message.chat.id, "🏠 Меню", reply_markup=keyboard, go_to_menu)
+    bot.register_next_step_handler(message.chat.id, "🏠 Меню", reply_markup=keyboard, go_to_menu)
 
     userid = str(message.chat.id)
 
