@@ -81,7 +81,7 @@ def add3(message):
 ◾ Коментарии к публикации:
 {m2}''',parse_mode='HTML',reply_markup=keyboard)
 
-def get_link1(message):
+def getlink1(message):
     try:
         global exists, get_link_m
         sqlite_connection = sqlite3.connect('db.db')
@@ -104,7 +104,7 @@ def podcategors(call):
         msg = bot.send_message(call.message.chat.id, '➕ Введите главную ссылку.\n\n Внимание! По этой ссылке будет производится поиск в базе данных.',parse_mode='HTML')
         bot.register_next_step_handler(msg, add1)
 
-    if call.data == 'get_link1':
+    if call.data == 'getlink1':
         msg = bot.send_message(call.message.chat.id, '➕ Введите главную ссылку.\n\n Внимание! По этой ссылке будет производится поиск в базе данных.',parse_mode='HTML')
         bot.register_next_step_handler(msg, get_link2, exists)
 
