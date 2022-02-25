@@ -66,10 +66,8 @@ def handle_text(message):
         link_text = ""
 
     for row in cursor.execute("SELECT link_text FROM links WHERE link_id = 666"):
-        link_id = list(row)[0]
-        link_coment = list(row)[1]
-        link_text = list(row)[2]
-        bot.send_message(message.chat.id, f'''{link_id},{link_text}''')
+        result = cursor.fetchone()
+        bot.send_message(message.chat.id, f'''{result},{link_text}''')
 
 def add1(message):
 	global m1
