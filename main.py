@@ -104,8 +104,6 @@ def get_link2(id):
             print("Имя:", row[1])
             print("Почта:", row[2])
             print("Добавлен:", row[3])
-        
-
 @bot.callback_query_handler(func=lambda call:True)
 def podcategors(call):
     if call.data == 'go_to_db':
