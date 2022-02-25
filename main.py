@@ -61,11 +61,11 @@ def handle_text(message):
         conn = sqlite3.connect('db.db')
         cursor = conn.cursor()
 
-        link_id = ""
+        link_id = "666"
         link_coment = ""
         link_text = ""
 
-    for row in cursor.execute("SELECT link_text FROM links WHERE link_id = 666"):
+    for row in cursor.execute("SELECT link_text FROM links WHERE link_id = ?", (link_id, )):
         result = cursor.fetchone()
         bot.send_message(message.chat.id, f'''{result},{link_text}''')
 
