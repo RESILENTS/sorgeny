@@ -66,7 +66,6 @@ def getlinkm(message):
         global link_id, link_coment, link_text, sql
         conn = sqlite3.connect('db.db')
         cursor = conn.cursor()
-        link_id = "666"
         link_coment = ""
         link_text = ""
         sql = "SELECT * FROM links WHERE link_id =?"
