@@ -17,7 +17,7 @@ cursor = conn.cursor()
 def welcome(message):
     global go_to_menu, msg_menu
     go_to_menu = callback_data="go_to_menu"
-    msg_menu = "🏠 Меню"
+    msg_menu = bot.send_message(message.chat.id, '🏠 Меню',parse_mode='HTML')
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
     btn_main1 = types.KeyboardButton(text="📩 Получить хайд")
     btn_main2 = types.KeyboardButton(text="📤 Новый запрос")
