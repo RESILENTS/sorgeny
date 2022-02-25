@@ -82,25 +82,22 @@ def add3(message):
 {m2}''',parse_mode='HTML',reply_markup=keyboard)
 
 def get_link1(message):
-	global get_link_m
+    try:
+        global exists, get_link_m
+        sqlite_connection = sqlite3.connect('db.db')
+        cursor = sqlite_connection.cursor()
+
 	get_link_m = message.text
 	msg = bot.send_message(message.chat.id, '➕ Введите скрытое содержимое.',parse_mode='HTML')
-	bot.register_next_step_handler(msg, get_link2)
+	cursor.execute(f'SELECT * FROM links WHERE link_id = "666"')
+        exists = cur.fetchall()
+        bot.register_next_step_handler(msg, exists)
 
 def db_table_val(link_id: str, link_coment: str, link_text: str):
     params = (link_id, link_coment, link_text)
     cursor.execute(f'''INSERT INTO links (link_id, link_coment, link_text) VALUES ('{m1}', '{m3}', '{m2}')''')
     conn.commit()
-
-def get_link2(message):
-    try:
-        global exists
-        sqlite_connection = sqlite3.connect('db.db')
-        cursor = sqlite_connection.cursor()
-
-        cursor.execute(f'SELECT * FROM links WHERE link_id = "666"')
-        exists = cur.fetchall()
- 
+        
 @bot.callback_query_handler(func=lambda call:True)
 def podcategors(call):
     if call.data == 'go_to_db':
