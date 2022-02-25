@@ -68,6 +68,7 @@ def getlinkm(message):
         cursor = conn.cursor()
         link_coment = ""
         link_text = ""
+        link_id = ""
         sql = "SELECT * FROM links WHERE link_id =?"
         result = cursor.fetchall()
         for row in cursor.execute(sql, ([link_id1])):
