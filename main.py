@@ -81,10 +81,30 @@ def add3(message):
 ◾ Коментарии к публикации:
 {m2}''',parse_mode='HTML',reply_markup=keyboard)
 
+def get_link1(message):
+	global get_link_m
+	get_link_m = message.text
+	msg = bot.send_message(message.chat.id, '➕ Введите скрытое содержимое.',parse_mode='HTML')
+	bot.register_next_step_handler(msg, get_link2)
+
 def db_table_val(link_id: str, link_coment: str, link_text: str):
     params = (link_id, link_coment, link_text)
     cursor.execute(f'''INSERT INTO links (link_id, link_coment, link_text) VALUES ('{m1}', '{m3}', '{m2}')''')
     conn.commit()
+
+def get_link2(id):
+    try:
+        sqlite_connection = sqlite3.connect('db.db')
+        cursor = sqlite_connection.cursor()
+
+        sql_select_query = """select * from links where id = {id_link}"""
+        cursor.execute(sql_select_query)
+        records = cursor.fetchall()
+        for row in records:
+            print("Имя:", row[1])
+            print("Почта:", row[2])
+            print("Добавлен:", row[3])
+        
 
 @bot.callback_query_handler(func=lambda call:True)
 def podcategors(call):
