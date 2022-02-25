@@ -57,10 +57,10 @@ def handle_text(message):
         bot.send_message(message.chat.id, "🔍 *Выберите нужную вам страну для поиска данных.* \n\n*«Пробив»* — это противоправная услуга, с помощью которой злоумышленники получают из закрытых баз данных информацию о конкретном человеке или организации. Естественно, за деньги. Существование такого предложения было бы невозможно без инсайдеров — сотрудников, у которых есть доступ к нужной информации для выполнения служебных обязанностей.", reply_markup=keyboard, parse_mode='Markdown')
         
     if message.text == "📩 Получить хайд":
-	global link_id
-	link_id = message.text
-	msg = bot.send_message(message.chat.id, '➕ Введите ссылку для поиска в базе данных',parse_mode='HTML')
-	bot.register_next_step_handler(msg, getlinkm)
+        global link_id
+        link_id = message.text
+        msg = bot.send_message(message.chat.id, '➕ Введите ссылку для поиска в базе данных',parse_mode='HTML')
+        bot.register_next_step_handler(msg, getlinkm)
 
 def getlinkm(message):
         global link_id, link_coment, link_text, sql
@@ -87,9 +87,9 @@ def getlinkm(message):
 {link_coment}''')
 
 def add1(message):
-	global m1
-	m1 = message.text
-	msg = bot.send_message(message.chat.id, '➕ Введите коментарии к посту.',parse_mode='HTML')
+        global m1
+        m1 = message.text
+        msg = bot.send_message(message.chat.id, '➕ Введите коментарии к посту.',parse_mode='HTML')
 	bot.register_next_step_handler(msg, add2)
 
 def add2(message):
