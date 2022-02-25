@@ -13,33 +13,15 @@ idcanal = 1001418408821
 conn = sqlite3.connect('db.db', check_same_thread=False)
 cursor = conn.cursor()
 
-kb = types.ReplyKeyboardMarkup(resize_keyboard=True)
-kb.add(types.InlineKeyboardButton(text="➕ Добавить в базу"))
-kb.add(types.InlineKeyboardButton(text="📥 Новые запросы"))
-kb.add(types.InlineKeyboardButton(text="📋 Рассылка"))
-
-
-
 @bot.message_handler(commands=["start"])
 def welcome(message):
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
     btn_main1 = types.KeyboardButton(text="📩 Получить хайд")
     btn_main2 = types.KeyboardButton(text="📤 Новый запрос")
     keyboard.add(btn_main1, btn_main2)
-    bot.send_message(message.chat.id, "Как подавать котлеты?", reply_markup=keyboard)
+    bot.send_message(message.chat.id, "🏠 Меню", reply_markup=keyboard, go_to_menu)
 
     userid = str(message.chat.id)
-    text = "SORGENY — Я помогу тебе получить скрытую информацию с разных интернет ресурсов.\n\nУ меня есть база данных слитых хайдов с разных интернет площадок. Более подробнее о боте вы сможете узнать в разделе информация."
-    img = open ('welc.webp', 'rb')
-    keyboard = types.InlineKeyboardMarkup()
-    btn2 = types.InlineKeyboardButton(text="ℹ️ Информация", callback_data="test")
-    btn3 = types.InlineKeyboardButton(text="📢 Наш чат", callback_data="test")
-    btn4 = types.InlineKeyboardButton(text="📊 Статистика", callback_data="test")
-    btn5 = types.InlineKeyboardButton(text="👥 Поддержка", callback_data="test")
-
-    keyboard.add(btn2, btn3)
-    keyboard.add(btn4, btn5)
-    bot.send_photo(message.from_user.id, img, caption=text, reply_markup=keyboard, parse_mode='html')
 
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def handle_text(message):  
@@ -109,6 +91,19 @@ def podcategors(call):
         link_coment = {m3}
         link_text = {m2}
         db_table_val(link_id=link_id, link_coment=link_coment, link_text=link_text)
+
+    if call.data == 'go_to_menu':
+        text = "SORGENY — Я помогу тебе получить скрытую информацию с разных интернет ресурсов.\n\nУ меня есть база данных слитых хайдов с разных интернет площадок. Более подробнее о боте вы сможете узнать в разделе информация."
+        img = open ('welc.webp', 'rb')
+        keyboard = types.InlineKeyboardMarkup()
+        btn2 = types.InlineKeyboardButton(text="ℹ️ Информация", callback_data="test")
+        btn3 = types.InlineKeyboardButton(text="📢 Наш чат", callback_data="test")
+        btn4 = types.InlineKeyboardButton(text="📊 Статистика", callback_data="test")
+        btn5 = types.InlineKeyboardButton(text="👥 Поддержка", callback_data="test")
+
+        keyboard.add(btn2, btn3)
+        keyboard.add(btn4, btn5)
+        bot.send_photo(message.from_user.id, img, caption=text, reply_markup=keyboard, parse_mode='html')
 
 def callback_inline(call):
     if call.message:
