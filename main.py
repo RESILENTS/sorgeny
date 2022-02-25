@@ -126,8 +126,6 @@ def podcategors(call):
         bot.register_next_step_handler(msg, add1)
 
     if call.data == 'getlink2':
-        global link_idm
-        link_idm = message.text
         msg = bot.send_message(message.chat.id, '➕ Введите ссылку для поиска в базе данных',parse_mode='HTML')
         bot.register_next_step_handler(msg, getlinkm)
 
