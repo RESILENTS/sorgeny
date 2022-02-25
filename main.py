@@ -71,7 +71,11 @@ def handle_text(message):
             link_id = list(row)[0]
             link_coment = list(row)[1]
             link_text = list(row)[2]
-        bot.send_message(message.chat.id, f'''{link_id},{link_text}''')
+        bot.send_message(message.chat.id, f'''✅ Результат поиска по вашему запросу:
+▫️ Ссылка: {link_id}
+▫️ Скрытое содержимое: {link_text}
+
+▫️ Комментарии по теме: {link_coment}''')
 
 def add1(message):
 	global m1
