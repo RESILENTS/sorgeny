@@ -65,7 +65,7 @@ def handle_text(message):
         link_coment = ""
         link_text = ""
 
-    for row in cursor.execute("SELECT * FROM links"):
+    for row in cursor.execute("SELECT link_text FROM links WHERE link_id = ?",({link_idm}, )):
         link_id = list(row)[0]
         link_coment = list(row)[1]
         link_text = list(row)[2]
