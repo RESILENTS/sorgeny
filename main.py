@@ -66,7 +66,7 @@ def handle_text(message):
         link_text = ""
 
         sql = "SELECT * FROM links WHERE link_id =?"
-        cursor.execute(sql, ("666"))  
+        cursor.execute(sql, (["666"]))  
         result = cursor.fetchall()
         bot.send_message(message.chat.id, f'''{result},{link_text}''')
 
