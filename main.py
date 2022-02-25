@@ -71,13 +71,13 @@ def getlinkm(message):
         sql = "SELECT * FROM links WHERE link_id =?"
         result = cursor.fetchall()
         for row in cursor.execute(sql, ([link_id])):
-            link_id1 = list(row)[0]
+            link_id = list(row)[0]
             link_coment = list(row)[1]
             link_text = list(row)[2]
         bot.send_message(message.chat.id, f'''✅ Результат поиска по вашему запросу:
 
 ▫️ Ссылка: 
-{link_id1}
+{link_id}
 
 ▫️ Скрытое содержимое: 
 {link_text}
