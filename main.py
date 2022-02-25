@@ -55,7 +55,18 @@ def handle_text(message):
         keyboard.add(btn1, btn2)
         keyboard.add(btn3, btn4)
         bot.send_message(message.chat.id, "🔍 *Выберите нужную вам страну для поиска данных.* \n\n*«Пробив»* — это противоправная услуга, с помощью которой злоумышленники получают из закрытых баз данных информацию о конкретном человеке или организации. Естественно, за деньги. Существование такого предложения было бы невозможно без инсайдеров — сотрудников, у которых есть доступ к нужной информации для выполнения служебных обязанностей.", reply_markup=keyboard, parse_mode='Markdown')
-	
+
+    if message.text == "📩 Получить хайд":
+        global exists, get_link_m
+        sqlite_connection = sqlite3.connect('db.db')
+        cursor = sqlite_connection.cursor()
+
+        get_link_m = message.text
+        msg = bot.send_message(message.chat.id, '➕ Введите скрытое содержимое.',parse_mode='HTML')
+        cursor.execute(f'SELECT * FROM links WHERE link_id = "666"')
+        exists = cur.fetchall()
+        bot.register_next_step_handler(msg, get_link1)
+        
 def add1(message):
 	global m1
 	m1 = message.text
@@ -86,17 +97,6 @@ def db_table_val(link_id: str, link_coment: str, link_text: str):
     cursor.execute(f'''INSERT INTO links (link_id, link_coment, link_text) VALUES ('{m1}', '{m3}', '{m2}')''')
     conn.commit()
         
-def getlink1(message):
-        global exists, get_link_m
-        sqlite_connection = sqlite3.connect('db.db')
-        cursor = sqlite_connection.cursor()
-
-        get_link_m = message.text
-        msg = bot.send_message(message.chat.id, '➕ Введите скрытое содержимое.',parse_mode='HTML')
-        cursor.execute(f'SELECT * FROM links WHERE link_id = "666"')
-        exists = cur.fetchall()
-        bot.register_next_step_handler(msg, get_link1)
-
 @bot.callback_query_handler(func=lambda call:True)
 def podcategors(call):
     if call.data == 'go_to_db':
