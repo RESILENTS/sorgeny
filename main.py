@@ -94,19 +94,22 @@ def db_table_val(link_id: str, link_coment: str, link_text: str):
 
 def get_link2(message):
     try:
+        global exists
         sqlite_connection = sqlite3.connect('db.db')
         cursor = sqlite_connection.cursor()
 
         cursor.execute(f'SELECT * FROM links WHERE link_id = "666"')
         exists = cur.fetchall()
-        if exists == True:
-        print(exists)
-
+ 
 @bot.callback_query_handler(func=lambda call:True)
 def podcategors(call):
     if call.data == 'go_to_db':
         msg = bot.send_message(call.message.chat.id, '➕ Введите главную ссылку.\n\n Внимание! По этой ссылке будет производится поиск в базе данных.',parse_mode='HTML')
         bot.register_next_step_handler(msg, add1)
+
+    if call.data == 'get_link2':
+        msg = bot.send_message(call.message.chat.id, '➕ Введите главную ссылку.\n\n Внимание! По этой ссылке будет производится поиск в базе данных.',parse_mode='HTML')
+        bot.register_next_step_handler(msg, get_link2, exists)
 
     if call.data[:14] == 'принятьзаявку_':
         idasd = call.data[14:]
