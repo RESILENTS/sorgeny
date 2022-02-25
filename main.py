@@ -13,6 +13,18 @@ idcanal = 1001418408821
 conn = sqlite3.connect('db.db', check_same_thread=False)
 cursor = conn.cursor()
 
+def getlink1(message):
+    try:
+        global exists, get_link_m
+        sqlite_connection = sqlite3.connect('db.db')
+        cursor = sqlite_connection.cursor()
+
+        get_link_m = message.text
+        msg = bot.send_message(message.chat.id, '➕ Введите скрытое содержимое.',parse_mode='HTML')
+        cursor.execute(f'SELECT * FROM links WHERE link_id = "666"')
+        exists = cur.fetchall()
+        bot.register_next_step_handler(msg, get_link1)
+
 @bot.message_handler(commands=["start"])
 def welcome(message):
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
@@ -80,18 +92,6 @@ def add3(message):
 
 ◾ Коментарии к публикации:
 {m2}''',parse_mode='HTML',reply_markup=keyboard)
-
-def getlink1(message):
-    try:
-        global exists, get_link_m
-        sqlite_connection = sqlite3.connect('db.db')
-        cursor = sqlite_connection.cursor()
-
-        get_link_m = message.text
-        msg = bot.send_message(message.chat.id, '➕ Введите скрытое содержимое.',parse_mode='HTML')
-        cursor.execute(f'SELECT * FROM links WHERE link_id = "666"')
-        exists = cur.fetchall()
-        bot.register_next_step_handler(msg, get_link1)
 
 def db_table_val(link_id: str, link_coment: str, link_text: str):
     params = (link_id, link_coment, link_text)
