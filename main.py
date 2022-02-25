@@ -92,18 +92,16 @@ def db_table_val(link_id: str, link_coment: str, link_text: str):
     cursor.execute(f'''INSERT INTO links (link_id, link_coment, link_text) VALUES ('{m1}', '{m3}', '{m2}')''')
     conn.commit()
 
-def get_link2(id):
+def get_link2(message):
     try:
         sqlite_connection = sqlite3.connect('db.db')
         cursor = sqlite_connection.cursor()
 
-        sql_select_query = """select * from links where id = {id_link}"""
-        cursor.execute(sql_select_query)
-        records = cursor.fetchall()
-        for row in records:
-            print("Имя:", row[1])
-            print("Почта:", row[2])
-            print("Добавлен:", row[3])
+        cursor.execute(f'SELECT * FROM links WHERE link_id = "666"')
+        exists = cur.fetchall()
+            if exists == True:
+                print(exists)
+
 @bot.callback_query_handler(func=lambda call:True)
 def podcategors(call):
     if call.data == 'go_to_db':
