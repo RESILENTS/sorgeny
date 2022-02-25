@@ -66,7 +66,7 @@ def handle_text(message):
         link_text = ""
 
         sql = "SELECT * FROM links WHERE link_id =?"
-        for row in cursor.execute(sql, (["666"]))  
+        for row in cursor.execute(sql, (["666"])):
         result = cursor.fetchall()
             link_id = list(row)[0]
             link_coment = list(row)[1]
