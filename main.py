@@ -15,15 +15,24 @@ cursor = conn.cursor()
 
 @bot.message_handler(commands=["start"])
 def welcome(message):
-    global go_to_menu, msg_menu
-    msg_menu = bot.send_message(message.chat.id, '🏠 Меню',parse_mode='HTML', reply_markup=keyboard)
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
     btn_main1 = types.KeyboardButton(text="📩 Получить хайд")
     btn_main2 = types.KeyboardButton(text="📤 Новый запрос")
     keyboard.add(btn_main1, btn_main2)
-    bot.register_next_step_handler(msg_menu, go_to_menu)
+    bot.send_message(message.chat.id, '🏠 Меню',parse_mode='HTML', reply_markup=keyboard)
 
     userid = str(message.chat.id)
+    text = "SORGENY — Я помогу тебе получить скрытую информацию с разных интернет ресурсов.\n\nУ меня есть база данных слитых хайдов с разных интернет площадок. Более подробнее о боте вы сможете узнать в разделе информация."
+    img = open ('welc.webp', 'rb')
+    keyboard = types.InlineKeyboardMarkup()
+    btn2 = types.InlineKeyboardButton(text="ℹ️ Информация", callback_data="test")
+    btn3 = types.InlineKeyboardButton(text="📢 Наш чат", callback_data="test")
+    btn4 = types.InlineKeyboardButton(text="📊 Статистика", callback_data="test")
+    btn5 = types.InlineKeyboardButton(text="👥 Поддержка", callback_data="test")
+
+    keyboard.add(btn2, btn3)
+    keyboard.add(btn4, btn5)
+    bot.send_photo(message.from_user.id, img, caption=text, reply_markup=keyboard, parse_mode='html')
 
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def handle_text(message):  
@@ -76,20 +85,6 @@ def db_table_val(link_id: str, link_coment: str, link_text: str):
     params = (link_id, link_coment, link_text)
     cursor.execute(f'''INSERT INTO links (link_id, link_coment, link_text) VALUES ('{m1}', '{m3}', '{m2}')''')
     conn.commit()
-
-def go_to_menu(message):
-    text = "SORGENY — Я помогу тебе получить скрытую информацию с разных интернет ресурсов.\n\nУ меня есть база данных слитых хайдов с разных интернет площадок. Более подробнее о боте вы сможете узнать в разделе информация."
-    img = open ('welc.webp', 'rb')
-    keyboard = types.InlineKeyboardMarkup()
-    btn2 = types.InlineKeyboardButton(text="ℹ️ Информация", callback_data="test")
-    btn3 = types.InlineKeyboardButton(text="📢 Наш чат", callback_data="test")
-    btn4 = types.InlineKeyboardButton(text="📊 Статистика", callback_data="test")
-    btn5 = types.InlineKeyboardButton(text="👥 Поддержка", callback_data="test")
-
-    keyboard.add(btn2, btn3)
-    keyboard.add(btn4, btn5)
-    bot.send_photo(message.from_user.id, img, caption=text, reply_markup=keyboard, parse_mode='html')
-
 
 @bot.callback_query_handler(func=lambda call:True)
 def podcategors(call):
