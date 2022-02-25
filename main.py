@@ -88,8 +88,8 @@ def get_link1(message):
         cursor = sqlite_connection.cursor()
 
         get_link_m = message.text
-	msg = bot.send_message(message.chat.id, '➕ Введите скрытое содержимое.',parse_mode='HTML')
-	cursor.execute(f'SELECT * FROM links WHERE link_id = "666"')
+        msg = bot.send_message(message.chat.id, '➕ Введите скрытое содержимое.',parse_mode='HTML')
+        cursor.execute(f'SELECT * FROM links WHERE link_id = "666"')
         exists = cur.fetchall()
         bot.register_next_step_handler(msg, exists)
 
