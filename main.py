@@ -90,16 +90,16 @@ def add1(message):
         global m1
         m1 = message.text
         msg = bot.send_message(message.chat.id, '➕ Введите коментарии к посту.',parse_mode='HTML')
-	bot.register_next_step_handler(msg, add2)
+        bot.register_next_step_handler(msg, add2)
 
 def add2(message):
-	global m2
-	m2 = message.text
-	msg = bot.send_message(message.chat.id, '➕ Введите скрытое содержимое.',parse_mode='HTML')
-	bot.register_next_step_handler(msg, add3)
+        global m2
+        m2 = message.text
+        msg = bot.send_message(message.chat.id, '➕ Введите скрытое содержимое.',parse_mode='HTML')
+        bot.register_next_step_handler(msg, add3)
 
 def add3(message):
-	global m3
+        global m3
 	m3 = message.text
 	keyboard = types.InlineKeyboardMarkup()
 	keyboard.add(types.InlineKeyboardButton(text='✅ Опубликовать пост',callback_data=f'принятьзаявку_{message.chat.id}'))
