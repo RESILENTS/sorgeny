@@ -99,8 +99,8 @@ def get_link2(message):
 
         cursor.execute(f'SELECT * FROM links WHERE link_id = "666"')
         exists = cur.fetchall()
-            if exists == True:
-                print(exists)
+        if exists == True:
+        print(exists)
 
 @bot.callback_query_handler(func=lambda call:True)
 def podcategors(call):
