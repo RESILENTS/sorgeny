@@ -16,7 +16,7 @@ cursor = conn.cursor()
 @bot.message_handler(commands=["start"])
 def welcome(message):
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    btn_main1 = types.KeyboardButton(text="📩 Получить хайд", callback_data="getlink1")
+    btn_main1 = types.KeyboardButton(text="📩 Получить хайд", callback_data="getlink2")
     btn_main2 = types.KeyboardButton(text="📤 Новый запрос")
     keyboard.add(btn_main1, btn_main2)
     bot.send_message(message.chat.id, '🏠 Главное меню',parse_mode='HTML', reply_markup=keyboard)
@@ -103,7 +103,7 @@ def podcategors(call):
         msg = bot.send_message(call.message.chat.id, '➕ Введите главную ссылку.\n\n Внимание! По этой ссылке будет производится поиск в базе данных.',parse_mode='HTML')
         bot.register_next_step_handler(msg, add1)
 
-    if call.data == 'getlink1':
+    if call.data == 'getlink2':
         msg = bot.send_message(call.message.chat.id, '➕ Введите главную ссылку.\n\n Внимание! По этой ссылке будет производится поиск в базе данных.',parse_mode='HTML')
         bot.register_next_step_handler(msg, get_link2, exists)
 
