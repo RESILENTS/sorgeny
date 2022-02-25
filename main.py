@@ -65,7 +65,8 @@ def handle_text(message):
         link_coment = ""
         link_text = ""
 
-    for row in cursor.execute("SELECT * FROM links WHERE link_id = ?", (link_id, )):
+        sql = "SELECT * FROM links WHERE link_id ="
+        cursor.execute(sql, [("666")])  
         result = cursor.fetchone()
         bot.send_message(message.chat.id, f'''{result},{link_text}''')
 
