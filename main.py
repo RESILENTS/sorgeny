@@ -84,7 +84,7 @@ def getlinkm(message):
 🔐 <b>Скрытое содержимое: </b>
 {link_text}
 
-''')
+''', parse_mode='HTML')
 
 def add1(message):
         global m1
