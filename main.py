@@ -142,6 +142,7 @@ def podcategors(call):
         db_table_val(link_id=link_id, link_coment=link_coment, link_text=link_text)
 
     if call.data == 'go_home':
+        bot.delete_message(chat_id=call.message.chat.id,message_id=call.message.message_id)
         text = "SORGENY — Я помогу тебе получить скрытую информацию с разных интернет ресурсов.\n\nУ меня есть база данных слитых хайдов с разных интернет площадок. Более подробнее о боте вы сможете узнать в разделе информация."
         img = open ('welc.webp', 'rb')
         keyboard = types.InlineKeyboardMarkup()
