@@ -54,7 +54,10 @@ def handle_text(message):
     if message.text == "📩 Получить хайд":
         global link_idm
         link_idm = message.text
-        msg = bot.send_message(message.chat.id, '➕ Введите ссылку для поиска в базе данных',parse_mode='HTML')
+        msg = bot.send_message(message.chat.id, f'''➕ Введите ссылку для поиска в базе данных.
+        
+        Актуальные домены:
+        ✅ slivup.cc''',parse_mode='HTML')
         bot.register_next_step_handler(msg, getlinkm)
 
 def getlinkm(message):
