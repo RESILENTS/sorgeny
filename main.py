@@ -77,12 +77,15 @@ def getlinkm(message):
             link_coment = list(row)[1]
             link_text = list(row)[2]
         if  not link_text: 
-            bot.send_message(message.chat.id, '<b>Результат по вашему запросу:</b>')
+            keyboard = types.InlineKeyboardMarkup()
+            btn1 = types.InlineKeyboardButton(text="🔗 Новый пост", callback_data="go_to_db")
+            keyboard.add(btn1)
+            bot.send_message(message.chat.id, f'''❌ <b>ОШИБКА: По вашему запросу ничего не найдено.</b>''', reply_markup=keyboard, parse_mode='HTML')
         else:
             bot.send_message(message.chat.id, f'''🔍  <b>Результат по вашему запросу:</b>
 
 🔗  <b>Ссылка вашего запроса: </b>
-{link_id}
+ — {link_id}
 
 🔐  <b>Скрытое содержимое: </b>
 {link_text}
