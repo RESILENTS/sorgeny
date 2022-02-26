@@ -66,12 +66,12 @@ def handle_text(message):
         bot.register_next_step_handler(msg, getlinkm)
 
 def getlinkm(message):
-        global link_coment, link_text, sql
+        global link_coment, link_text, sql, link_id
         conn = sqlite3.connect('db.db')
         cursor = conn.cursor()
         link_coment = ""
         link_text = ""
-        link_id = link_idm
+        link_id = message.text
         sql = "SELECT * FROM links WHERE link_id =?"
         result = cursor.fetchall()
         for row in cursor.execute(sql, ([link_id])):
