@@ -72,14 +72,12 @@ def getlinkm(message):
         link_id = message.text
         sql = "SELECT * FROM links WHERE link_id =?"
         result = cursor.fetchall()
-        if  result.fetchone() is None: 
-            bot.send_message(message.chat.id, "test")
-        else:
         for row in cursor.execute(sql, ([link_id])):
             link_id = list(row)[0]
             link_coment = list(row)[1]
             link_text = list(row)[2]
-        bot.send_message(message.chat.id, f'''🔍  <b>Результат по вашему запросу:</b>
+        if result.fetchall() is None: 
+            bot.send_message(message.chat.id, f'''🔍  <b>Результат по вашему запросу:</b>
 
 🔗  <b>Ссылка вашего запроса: </b>
 {link_id}
@@ -88,6 +86,8 @@ def getlinkm(message):
 {link_text}
 
 ''', parse_mode='HTML')
+        else:
+            bot.send_message(message.chat.id, '<b>Результат по вашему запросу:</b>')
 
 def add1(message):
         global m1
