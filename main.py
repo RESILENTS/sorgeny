@@ -73,6 +73,9 @@ def getlinkm(message):
         sql = "SELECT * FROM links WHERE link_id =?"
         result = cursor.fetchall()
         for row in cursor.execute(sql, ([link_id])):
+                if  result.fetchone() is None: 
+                      bot.send_message(message.chat.id, "test")
+                else:
             link_id = list(row)[0]
             link_coment = list(row)[1]
             link_text = list(row)[2]
