@@ -155,7 +155,7 @@ def podcategors(call):
         keyboard.add(btn1, btn2)
         keyboard.add(btn3, btn4)
         keyboard.add(btn5, btn6)
-        bot.send_photo(call.update.message.chat.id, img, caption=text, reply_markup=keyboard, parse_mode='html')
+        bot.send_photo(call.message.chat.id, img, caption=text, reply_markup=keyboard, parse_mode='html')
 
 def callback_inline(call):
     if call.message:
