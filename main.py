@@ -55,9 +55,12 @@ def handle_text(message):
         global link_idm
         link_idm = message.text
         msg = bot.send_message(message.chat.id, f'''➕ Введите ссылку для поиска в базе данных.
+	
+⚠️ <b>ВНИМАНИЕ!</b> Если вы отправите ссылку с не актуальным доменом то <b>БОТ</b> не сможет найти запись в базе данных.
         
 Актуальные домены:
-✅ slivup.cc''',parse_mode='HTML')
+ — slivup.cc
+ — s1.slivup.net''',parse_mode='HTML')
         bot.register_next_step_handler(msg, getlinkm)
 
 def getlinkm(message):
