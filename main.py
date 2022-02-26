@@ -130,7 +130,7 @@ def podcategors(call):
         bot.register_next_step_handler(msg, getlinkm)
 	
     if call.data == 'getlink3':
-	bot.delete_message(chat_id=call.message.chat.id,message_id=call.message.message_id)
+        bot.delete_message(chat_id=call.message.chat.id,message_id=call.message.message_id)
         text = "➕ Введите ссылку для поиска в базе данных"
         img = open ('welc.webp', 'rb')
         keyboard = types.InlineKeyboardMarkup()
