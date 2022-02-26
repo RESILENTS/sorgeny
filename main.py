@@ -56,8 +56,8 @@ def handle_text(message):
         link_idm = message.text
         msg = bot.send_message(message.chat.id, f'''➕ Введите ссылку для поиска в базе данных.
         
-        Актуальные домены:
-        ✅ slivup.cc''',parse_mode='HTML')
+Актуальные домены:
+✅ slivup.cc''',parse_mode='HTML')
         bot.register_next_step_handler(msg, getlinkm)
 
 def getlinkm(message):
