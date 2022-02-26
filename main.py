@@ -77,6 +77,8 @@ def getlinkm(message):
             link_coment = list(row)[1]
             link_text = list(row)[2]
         if cursor.fetchall() is None: 
+            bot.send_message(message.chat.id, '<b>Результат по вашему запросу:</b>')
+        else:
             bot.send_message(message.chat.id, f'''🔍  <b>Результат по вашему запросу:</b>
 
 🔗  <b>Ссылка вашего запроса: </b>
@@ -86,8 +88,6 @@ def getlinkm(message):
 {link_text}
 
 ''', parse_mode='HTML')
-        else:
-            bot.send_message(message.chat.id, '<b>Результат по вашему запросу:</b>')
 
 def add1(message):
         global m1
