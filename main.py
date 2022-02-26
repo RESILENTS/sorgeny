@@ -25,7 +25,7 @@ def welcome(message):
     text = "SORGENY — Я помогу тебе получить скрытую информацию с разных интернет ресурсов.\n\nУ меня есть база данных слитых хайдов с разных интернет площадок. Более подробнее о боте вы сможете узнать в разделе информация."
     img = open ('welc.webp', 'rb')
     keyboard = types.InlineKeyboardMarkup()
-    btn1 = types.InlineKeyboardButton(text="📩 Получить хайд", callback_data="getlink2")
+    btn1 = types.InlineKeyboardButton(text="📩 Получить хайд", callback_data="getlink3")
     btn2 = types.InlineKeyboardButton(text="ℹ️ Информация", callback_data="test")
     btn3 = types.InlineKeyboardButton(text="💭 Наш чат", callback_data="test")
     btn4 = types.InlineKeyboardButton(text="📢 Наш канал", callback_data="test")
@@ -128,6 +128,16 @@ def podcategors(call):
     if call.data == 'getlink2':
         msg = bot.send_message(call.message.chat.id, '➕ Введите ссылку для поиска в базе данных',parse_mode='HTML')
         bot.register_next_step_handler(msg, getlinkm)
+	
+    if call.data == 'getlink3':
+        text = "➕ Введите ссылку для поиска в базе данных"
+        img = open ('welc.webp', 'rb')
+        keyboard = types.InlineKeyboardMarkup()
+        btn1 = types.InlineKeyboardButton(text="📩 Получить хайд", callback_data="getlink2")
+
+        keyboard.add(btn1)
+        msg = bot.send_photo(message.from_user.id, img, caption=text, reply_markup=keyboard, parse_mode='html')
+	bot.register_next_step_handler(msg, getlinkm)
 
     if call.data[:14] == 'принятьзаявку_':
         idasd = call.data[14:]
