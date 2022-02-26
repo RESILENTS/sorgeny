@@ -135,8 +135,7 @@ def podcategors(call):
         img = open ('welc.webp', 'rb')
         keyboard = types.InlineKeyboardMarkup()
         btn1 = types.InlineKeyboardButton(text="📩 Новый запрос", callback_data="getlink2")
-	btn2 = types.InlineKeyboardButton(text="🏠 Главное меню", callback_data="getlink2")
-
+	btn2 = types.InlineKeyboardButton(text="🏠 Главное меню", callback_data="getlink4")
         keyboard.add(btn1)
         msg = bot.send_photo(call.message.chat.id, img, caption=text, reply_markup=keyboard, parse_mode='html')
         bot.register_next_step_handler(msg, getlinkm)
