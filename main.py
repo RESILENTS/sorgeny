@@ -137,7 +137,7 @@ def podcategors(call):
 
         keyboard.add(btn1)
         msg = bot.send_photo(message.from_user.id, img, caption=text, reply_markup=keyboard, parse_mode='html')
-	bot.register_next_step_handler(msg, getlinkm)
+        bot.register_next_step_handler(msg, getlinkm)
 
     if call.data[:14] == 'принятьзаявку_':
         idasd = call.data[14:]
