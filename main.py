@@ -76,12 +76,12 @@ def getlinkm(message):
             link_id = list(row)[0]
             link_coment = list(row)[1]
             link_text = list(row)[2]
-        bot.send_message(message.chat.id, f'''✅ Результат по вашему запросу:
+        bot.send_message(message.chat.id, f'''🔍 <b>Результат по вашему запросу:</b>
 
-▫️ Ссылка: 
+🔗 <b>Ссылка вашего запроса: </b>
 {link_id}
 
-▫️ Скрытое содержимое: 
+🔐 <b>Скрытое содержимое: </b>
 {link_text}
 
 ''')
