@@ -48,16 +48,6 @@ def handle_text(message):
             keyboard.add(btn1, btn2)
             keyboard.add(btn3)
             bot.send_message(message.chat.id, "Добро пожаловать в админ панель.", reply_markup=keyboard, parse_mode='Markdown')
-
-    if message.text == "ℹ Информация":  
-        keyboard = types.InlineKeyboardMarkup()
-        btn1 = types.InlineKeyboardButton(text="🔩 Генераторы", callback_data="uabtn")
-        btn2 = types.InlineKeyboardButton(text="⛓ Чекеры", callback_data="test")
-        btn3 = types.InlineKeyboardButton(text="📢 Спам, Флуд", callback_data="test")
-        btn4 = types.InlineKeyboardButton(text="🔨 Разные", callback_data="test")
-        keyboard.add(btn1, btn2)
-        keyboard.add(btn3, btn4)
-        bot.send_message(message.chat.id, "🔍 *Выберите нужную вам страну для поиска данных.* \n\n*«Пробив»* — это противоправная услуга, с помощью которой злоумышленники получают из закрытых баз данных информацию о конкретном человеке или организации. Естественно, за деньги. Существование такого предложения было бы невозможно без инсайдеров — сотрудников, у которых есть доступ к нужной информации для выполнения служебных обязанностей.", reply_markup=keyboard, parse_mode='Markdown')
         
     if message.text == "📩 Получить хайд":
         global link_idm
@@ -150,6 +140,23 @@ def podcategors(call):
         link_coment = {m3}
         link_text = {m2}
         db_table_val(link_id=link_id, link_coment=link_coment, link_text=link_text)
+
+    if call.data == 'go_home':
+        bot.delete_message(chat_id=call.message.chat.id,message_id=call.message.message_id)
+        text = "SORGENY — Я помогу тебе получить скрытую информацию с разных интернет ресурсов.\n\nУ меня есть база данных слитых хайдов с разных интернет площадок. Более подробнее о боте вы сможете узнать в разделе информация."
+        img = open ('welc.webp', 'rb')
+        keyboard = types.InlineKeyboardMarkup()
+        btn1 = types.InlineKeyboardButton(text="📩 Получить хайд", callback_data="getlink3")
+        btn2 = types.InlineKeyboardButton(text="ℹ️ Информация", callback_data="test")
+        btn3 = types.InlineKeyboardButton(text="💭 Наш чат", callback_data="test")
+        btn4 = types.InlineKeyboardButton(text="📢 Наш канал", callback_data="test")
+        btn5 = types.InlineKeyboardButton(text="📊 Статистика", callback_data="test")
+        btn6 = types.InlineKeyboardButton(text="👥 Поддержка", callback_data="test")
+
+        keyboard.add(btn1, btn2)
+        keyboard.add(btn3, btn4)
+        keyboard.add(btn5, btn6)
+        bot.send_photo(message.from_user.id, img, caption=text, reply_markup=keyboard, parse_mode='html')
 
 def callback_inline(call):
     if call.message:
