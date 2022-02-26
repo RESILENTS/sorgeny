@@ -7,7 +7,7 @@ from random import randint
 from config import token
 
 bot=telebot.TeleBot(token)
-ADMIN = 641892529
+ADMIN = 1938749145
 idcanal = 1001418408821
 
 conn = sqlite3.connect('db.db', check_same_thread=False)
