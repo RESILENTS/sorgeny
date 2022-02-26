@@ -27,7 +27,7 @@ def welcome(message):
     keyboard = types.InlineKeyboardMarkup()
     btn1 = types.InlineKeyboardButton(text="📩 Получить хайд", callback_data="getlink3")
     btn2 = types.InlineKeyboardButton(text="ℹ️ Информация", callback_data="test")
-    btn3 = types.InlineKeyboardButton(text="💭 Наш чат", callback_data="uabtn1_1")
+    btn3 = types.InlineKeyboardButton(text="💭 Наш чат", callback_data="uabtn")
     btn4 = types.InlineKeyboardButton(text="📢 Наш канал", callback_data="test")
     btn5 = types.InlineKeyboardButton(text="📊 Статистика", callback_data="test")
     btn6 = types.InlineKeyboardButton(text="👥 Поддержка", callback_data="test")
