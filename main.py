@@ -157,8 +157,6 @@ def podcategors(call):
         keyboard.add(btn5, btn6)
         bot.send_photo(call.message.chat.id, img, caption=text, reply_markup=keyboard, parse_mode='html')
 
-def callback_inline(call):
-    if call.message:
         if call.data == "uabtn":
             keyboard = types.InlineKeyboardMarkup()
             btn1 = types.InlineKeyboardButton(text="📥 Получить информацию", callback_data="uabtn1_1")
