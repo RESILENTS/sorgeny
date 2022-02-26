@@ -71,7 +71,7 @@ def getlinkm(message):
         link_text = ""
         link_id = message.text
         sql = "SELECT * FROM links WHERE link_id =?"
-        result = cursor.fetchall()
+        result.cursor.fetchall()
         for row in cursor.execute(sql, ([link_id])):
             link_id = list(row)[0]
             link_coment = list(row)[1]
