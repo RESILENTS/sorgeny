@@ -20,7 +20,7 @@ def db_table_val():
 
 @bot.message_handler(commands=["start"])
 def welcome(message):
-    global user_id, username
+    global user_id1, username1
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
     btn_main1 = types.KeyboardButton(text="📩 Получить хайд")
     btn_main2 = types.KeyboardButton(text="📤 Новый запрос")
@@ -42,10 +42,10 @@ def welcome(message):
     keyboard.add(btn1, btn4)
     bot.send_photo(message.from_user.id, img, caption=text, reply_markup=keyboard, parse_mode='html')
 
-    user_id = message.from_user.id
-    username = message.from_user.username
+    user_id1 = message.from_user.id
+    username1 = message.from_user.username
 
-    db_table_val(user_id=us_id, user_name=us_name, user_surname=us_sname, username=username)
+    db_table_val(user_id=user_id1, username=username1)
 
 
 @bot.message_handler(func=lambda message: True, content_types=['text'])
