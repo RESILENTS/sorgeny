@@ -18,6 +18,10 @@ cursor = conn.cursor()
 def welcome(message):
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
     btn_main1 = types.KeyboardButton(text="📩 Получить хайд")
+if message.from_user.id == ADMIN:
+    btn_main2 = types.KeyboardButton(text="👥 Админка")
+    keyboard.add(btn_main2)
+elif:
     keyboard.add(btn_main1)
     bot.send_message(message.chat.id, '🏠 Добро пожаловать в главное меню.',parse_mode='HTML', reply_markup=keyboard)
 
@@ -37,7 +41,7 @@ def welcome(message):
 
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def handle_text(message):  
-    if message.text == "admin666":
+    if message.text == "👥 Админка":
         if message.from_user.id == ADMIN:
             keyboard = types.InlineKeyboardMarkup()
             btn1 = types.InlineKeyboardButton(text="🔗 Новый пост", callback_data="go_to_db")
