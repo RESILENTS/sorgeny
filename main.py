@@ -137,6 +137,9 @@ def getlinkm(message):
 
 ''',reply_markup=keyboard, parse_mode='HTML')
 
+def getnewlink(message):
+        
+
 def add1(message):
         global m1
         m1 = message.text
@@ -214,8 +217,8 @@ def podcategors(call):
  — slivup.cc
  — s1.slivup.net
  
-📊  <b>Сливов в базе данных:</b> {result2}''', parse_mode='HTML')
-        bot.register_next_step_handler(msg, getlinkm)
+📊  <b>Сливов в базе данных:</b>''', parse_mode='HTML')
+        bot.register_next_step_handler(msg, getnewlink)
         
 
 bot.polling(none_stop = True, interval = 0)
