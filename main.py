@@ -136,12 +136,6 @@ def getlinkm(message):
 
 ''',reply_markup=keyboard, parse_mode='HTML')
 
-def get_new(message):
-        global m1
-        m1 = message.text
-        msg = bot.send_message(message.chat.id, '➕ Введите коментарии к посту.',parse_mode='HTML')
-        bot.register_next_step_handler(msg, add2)
-
 def add1(message):
         global m1
         m1 = message.text
@@ -214,9 +208,7 @@ def podcategors(call):
 
     if call.data == 'get_new':
         global get_link_new
-        get_link_new = ""
-        link_text = get_link_new
-        db_get_new(new_link=link_text)
+        db_get_new(new_link=get_link_new)
         
 
 bot.polling(none_stop = True, interval = 0)
