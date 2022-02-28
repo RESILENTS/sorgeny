@@ -215,7 +215,6 @@ def podcategors(call):
     if call.data == 'get_new':
         bot.delete_message(chat_id=call.message.chat.id,message_id=call.message.message_id)
         global link_idm
-        new_link = message.text
         msg = bot.send_message(message.chat.id, f'''🔍  <b>Введите ссылку для поиска в базе данных.</b>
 	
 ⚠️  <b>ВНИМАНИЕ!</b> Если вы отправите ссылку с не актуальным доменом то <b>БОТ</b> не сможет найти запись в базе данных.
