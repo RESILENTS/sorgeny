@@ -26,7 +26,7 @@ def welcome(message):
 
     sql = f'''INSERT INTO users (user_id, username) VALUES ('{user_id}', '{username}')'''
     result = cursor.fetchall()
-    sqlite_select_query = """SELECT COUNT(*) FROM users"""
+    sqlite_select_query = """SELECT * from users"""
     cursor.execute(sqlite_select_query)
     records = cursor.fetchall()
     num_us = len(records)
