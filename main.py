@@ -13,12 +13,13 @@ idcanal = 1001418408821
 conn = sqlite3.connect('db.db', check_same_thread=False)
 cursor = conn.cursor()
 
-def db_table_val(user_id: int, user_name: str, user_surname: str, username: str):
+def db_table_val():
 	cursor.execute('INSERT INTO users (user_id, user_name, user_surname, username) VALUES (?, ?, ?, ?)', (user_id, user_name, user_surname, username))
 	conn.commit()
 
 @bot.message_handler(commands=["start"])
 def welcome(message):
+    global user_id, user_name, user_surname, username
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
     btn_main1 = types.KeyboardButton(text="📩 Получить хайд")
     btn_main2 = types.KeyboardButton(text="📤 Новый запрос")
