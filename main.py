@@ -207,7 +207,7 @@ def podcategors(call):
         db_table_val(link_id=link_id, link_coment=link_coment, link_text=link_text)
 
     if call.data == 'get_new':
-        global get_link_new
+        global get_link_new, link_idm
         get_link_new = link_idm
         db_get_new(new_link=get_link_new)
         
