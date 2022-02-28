@@ -102,12 +102,13 @@ def handle_text(message):
         bot.register_next_step_handler(msg, getlinkm)
 
 def getlinkm(message):
-        global link_coment, link_text, sql, link_id
+        global link_coment, link_text, sql, link_id, get_link_new
         conn = sqlite3.connect('db.db')
         cursor = conn.cursor()
         link_coment = ""
         link_text = ""
         link_id = message.text
+        get_link_new = link_id
         sql = "SELECT * FROM links WHERE link_id =?"
         result = cursor.fetchall()
         for row in cursor.execute(sql, ([link_id])):
@@ -116,7 +117,7 @@ def getlinkm(message):
             link_text = list(row)[2]
         if  not link_text: 
             keyboard = types.InlineKeyboardMarkup()
-            btn1 = types.InlineKeyboardButton(text="➕ Отправить запрос", callback_data="go_to_db")
+            btn1 = types.InlineKeyboardButton(text="➕ Отправить запрос на слив", callback_data="get_new")
             keyboard.add(btn1)
             bot.send_message(message.chat.id, f'''❌ <b>ОШИБКА:</b> По вашему запросу <b>"{link_id}"</b> ничего не найдено.
 	    
@@ -134,6 +135,12 @@ def getlinkm(message):
 {link_text}
 
 ''',reply_markup=keyboard, parse_mode='HTML')
+
+def get_new(message):
+        global m1
+        m1 = message.text
+        msg = bot.send_message(message.chat.id, '➕ Введите коментарии к посту.',parse_mode='HTML')
+        bot.register_next_step_handler(msg, add2)
 
 def add1(message):
         global m1
@@ -164,6 +171,11 @@ def db_table_val(link_id: str, link_coment: str, link_text: str):
     params = (link_id, link_coment, link_text)
     cursor.execute(f'''INSERT INTO links (link_id, link_coment, link_text) VALUES ('{m1}', '{m3}', '{m2}')''')
     conn.commit()
+
+def db_get_new(get_link_new: str):
+    params = (link_id, link_coment, link_text)
+    cursor.execute(f'''INSERT INTO get_new (new_link) VALUES ('{get_link_new}')''')
+    conn.commit()
         
 @bot.callback_query_handler(func=lambda call:True)
 def podcategors(call):
@@ -193,44 +205,16 @@ def podcategors(call):
         idasd = call.data[14:]
         bot.delete_message(chat_id=call.message.chat.id,message_id=call.message.message_id)
         main = telebot.types.ReplyKeyboardMarkup(True)
-        bot.send_message(idasd,reply_markup=main, text='hhh')
+        bot.send_message(idasd,reply_markup=main, text='✅ Успешно!')
 
         link_id = {m1}
         link_coment = {m3}
         link_text = {m2}
         db_table_val(link_id=link_id, link_coment=link_coment, link_text=link_text)
 
-    if call.data == 'go_home':
-        bot.delete_message(chat_id=call.message.chat.id,message_id=call.message.message_id)
-        text = "SORGENY — Я помогу тебе получить скрытую информацию с разных интернет ресурсов.\n\nУ меня есть база данных слитых хайдов с разных интернет площадок. Более подробнее о боте вы сможете узнать в разделе информация."
-        img = open ('welc.webp', 'rb')
-        keyboard = types.InlineKeyboardMarkup()
-        btn1 = types.InlineKeyboardButton(text="📩 Получить хайд", callback_data="getlink3")
-        btn2 = types.InlineKeyboardButton(text="ℹ️ Информация", callback_data="test")
-        btn3 = types.InlineKeyboardButton(text="💭 Наш чат", callback_data="test")
-        btn4 = types.InlineKeyboardButton(text="📢 Наш канал", callback_data="test")
-        btn5 = types.InlineKeyboardButton(text="📊 Статистика", callback_data="test")
-        btn6 = types.InlineKeyboardButton(text="👥 Поддержка", callback_data="test")
+    if call.data == 'get_new':
+        link_text = get_link_new
+        db_get_new(new_link=link_text)
+        
 
-        keyboard.add(btn1, btn2)
-        keyboard.add(btn3, btn4)
-        keyboard.add(btn5, btn6)
-        bot.send_photo(call.message.chat.id, img, caption=text, reply_markup=keyboard, parse_mode='html')
-
-        if call.data == "uabtn":
-            keyboard = types.InlineKeyboardMarkup()
-            btn1 = types.InlineKeyboardButton(text="📥 Получить информацию", callback_data="uabtn1_1")
-            btn2 = types.InlineKeyboardButton(text="📤 Запросить слив", callback_data="uabtn1_2")
-            keyboard.add(btn1)
-            keyboard.add(btn2)
-            bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="📌 Выберите нужный вам режим для продолжения работы с ботом.", reply_markup=keyboard, parse_mode='Markdown')
-
-        if call.data == "uabtn1_1":
-            uabtn1_1_message = bot.send_message(chat_id=call.message.chat.id, text="📥 *Получить информацию под хайдом.*\n\nℹ️ Введите ID темы на форуме для слива содержимого под хайдом.", parse_mode='Markdown')
-            bot.register_next_step_handler(uabtn1_1_message, auto_number_check)
-		
-        if call.data == "uabtn1_2":
-            uabtn1_2_message = bot.send_message(chat_id=call.message.chat.id, text="📤 *Отправить запрос на слив хайда администраторам.*\n\nℹ️ Отправь мне ссылку на нужную вам тему для слива содержимого под хайдом.", parse_mode='Markdown')
-            bot.register_next_step_handler(uabtn1_2_message, getcontact)
-	
 bot.polling(none_stop = True, interval = 0)
