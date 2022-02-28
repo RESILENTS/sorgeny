@@ -100,6 +100,7 @@ def handle_text(message):
  
 📊  <b>Сливов в базе данных:</b> {result2}''', parse_mode='HTML')
         bot.register_next_step_handler(msg, getlinkm)
+	get_link_new = link_id
 
 def getlinkm(message):
         global link_coment, link_text, sql, link_id, get_link_new
@@ -115,7 +116,6 @@ def getlinkm(message):
             link_coment = list(row)[1]
             link_text = list(row)[2]
         if  not link_text: 
-            get_link_new = link_id
             keyboard = types.InlineKeyboardMarkup()
             btn1 = types.InlineKeyboardButton(text="➕ Отправить запрос на слив", callback_data="get_new")
             keyboard.add(btn1)
