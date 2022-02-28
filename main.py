@@ -191,7 +191,7 @@ def db_table_val(link_id: str, link_coment: str, link_text: str):
 
 def db_get_new(new_link: str):
     params = (new_link)
-    cursor.execute(f'''INSERT INTO get_new (new_link) VALUES ('{new_link_text}')''')
+    cursor.execute(f'''INSERT INTO get_new (new_link) VALUES ('{mnew1}')''')
     conn.commit()
         
 @bot.callback_query_handler(func=lambda call:True)
