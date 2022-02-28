@@ -102,12 +102,13 @@ def handle_text(message):
         bot.register_next_step_handler(msg, getlinkm)
 
 def getlinkm(message):
-        global link_coment, link_text, sql, link_id, get_link_new
+        global link_coment, link_text, sql, link_id, get_link_new, link_global
         conn = sqlite3.connect('db.db')
         cursor = conn.cursor()
         link_coment = ""
         link_text = ""
         link_id = message.text
+	link_global = link_id
         sql = "SELECT * FROM links WHERE link_id =?"
         result = cursor.fetchall()
         for row in cursor.execute(sql, ([link_id])):
@@ -207,7 +208,7 @@ def podcategors(call):
 
     if call.data == 'get_new':
         global get_link_new, new_link
-        new_link = link_id
+        new_link = link_global
         db_get_new(new_link=new_link)
         
 
