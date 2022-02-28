@@ -29,7 +29,7 @@ def welcome(message):
     sqlite_select_query = """SELECT * from users"""
     cursor.execute(sqlite_select_query)
     records = cursor.fetchall()
-    num_us = len(records)
+    bot.send_message(message.chat.id, 'Пользователей:', len(records))
 	
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
     btn_main1 = types.KeyboardButton(text="📩 Получить хайд")
