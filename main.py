@@ -42,10 +42,10 @@ def welcome(message):
     keyboard.add(btn1, btn4)
     bot.send_photo(message.from_user.id, img, caption=text, reply_markup=keyboard, parse_mode='html')
 
-    user_id1 = message.from_user.id
-    username1 = message.from_user.username
+    user_id = message.from_user.id
+    username = message.from_user.username
 
-    db_table_val(user_id=user_id1, username=username1)
+    db_table_val(user_id=user_id, username=username)
 
 
 @bot.message_handler(func=lambda message: True, content_types=['text'])
