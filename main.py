@@ -83,6 +83,12 @@ def handle_text(message):
             keyboard.add(btn2, btn3)
             keyboard.add(btn1, btn4)
             bot.send_photo(message.from_user.id, img, caption=text, reply_markup=keyboard, parse_mode='html')
+
+    if message.text == "📤 Новый запрос":
+        global mnew1
+        mnew1 = message.text
+        msg = bot.send_message(message.chat.id, '➕ Введите вашу ссылку для отправки Администраторам запроса на слив.',parse_mode='HTML')
+        bot.register_next_step_handler(msg, addnew2)
         
     if message.text == "📩 Получить хайд":
         global link_idm
@@ -136,6 +142,23 @@ def getlinkm(message):
 {link_text}
 
 ''',reply_markup=keyboard, parse_mode='HTML')
+
+def addnew1(message):
+        global mnew1
+        mnew1 = message.text
+        msg = bot.send_message(message.chat.id, '➕ Введите вашу ссылку для отправки Администраторам запроса на слив.',parse_mode='HTML')
+        bot.register_next_step_handler(msg, addnew2)
+
+def addnew2(message):
+        global mnew1
+        mnew1 = message.text
+        keyboard = types.InlineKeyboardMarkup()
+        keyboard.add(types.InlineKeyboardButton(text='➕ Отправить запрос',callback_data='get_new'))
+        bot.send_message(message.chat.id, f'''✅ Предпросмотр вашего запроса:
+
+◾ Ссылка: {mnew1}
+
+Нажмите на кнопку ниже для отправки запроса:''',parse_mode='HTML',reply_markup=keyboard)
 
 def add1(message):
         global m1
@@ -212,7 +235,6 @@ def podcategors(call):
         new_link_text = message.text
         new_links = new_link_text
         db_get_new(new_link=new_links)
-        bot.send_message(call.message.chat.id, '➕ Введите главную ссылку666.\n\n Внимание! По этой ссылке будет производится поиск в базе данных.',parse_mode='HTML')
         
 
 bot.polling(none_stop = True, interval = 0)
