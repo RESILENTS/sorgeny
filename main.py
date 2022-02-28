@@ -80,7 +80,7 @@ def getlinkm(message):
             keyboard = types.InlineKeyboardMarkup()
             btn1 = types.InlineKeyboardButton(text="➕ Отправить запрос", callback_data="go_to_db")
             keyboard.add(btn1)
-            bot.send_message(message.chat.id, f'''❌ <b>ОШИБКА: По вашему запросу ничего не найдено.</b>
+            bot.send_message(message.chat.id, f'''❌ <b>ОШИБКА:</b> По вашему запросу <b>"{link_id}"</b> ничего не найдено.
 	    
 Нажмите на кнопку ниже для отправки запроса на слив вашего запроса.''', reply_markup=keyboard, parse_mode='HTML')
         else:
