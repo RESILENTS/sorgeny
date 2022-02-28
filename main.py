@@ -50,6 +50,9 @@ def handle_text(message):
         
     if message.text == "📩 Получить хайд":
         global link_idm
+        keyboard = types.InlineKeyboardMarkup()
+        btn1 = types.InlineKeyboardButton(text="❌ Отменить запрос", callback_data="get_close")
+        keyboard.add(btn1)
         link_idm = message.text
         msg = bot.send_message(message.chat.id, f'''🔍  <b>Введите ссылку для поиска в базе данных.</b>
 	
@@ -57,7 +60,7 @@ def handle_text(message):
         
 🟢  <b>Актуальные домены:</b>
  — slivup.cc
- — s1.slivup.net''',parse_mode='HTML')
+ — s1.slivup.net''', reply_markup=keyboard, parse_mode='HTML')
         bot.register_next_step_handler(msg, getlinkm)
 
 def getlinkm(message):
