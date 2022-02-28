@@ -126,6 +126,9 @@ def db_table_val(link_id: str, link_coment: str, link_text: str):
         
 @bot.callback_query_handler(func=lambda call:True)
 def podcategors(call):
+    if call.data == 'get_close':
+        bot.delete_message(chat_id=call.message.chat.id,message_id=call.message.message_id)
+
     if call.data == 'go_to_db':
         msg = bot.send_message(call.message.chat.id, '➕ Введите главную ссылку.\n\n Внимание! По этой ссылке будет производится поиск в базе данных.',parse_mode='HTML')
         bot.register_next_step_handler(msg, add1)
