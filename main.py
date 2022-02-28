@@ -209,7 +209,7 @@ def podcategors(call):
 
     if call.data == 'get_new':
         global new_link_text
-        new_link_text = call.message.text
+        new_link_text = message.text
         new_links = new_link_text
         db_get_new(new_link=new_links)
         bot.send_message(call.message.chat.id, '➕ Введите главную ссылку666.\n\n Внимание! По этой ссылке будет производится поиск в базе данных.',parse_mode='HTML')
