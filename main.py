@@ -100,7 +100,7 @@ def handle_text(message):
  
 📊  <b>Сливов в базе данных:</b> {result2}''', parse_mode='HTML')
         bot.register_next_step_handler(msg, getlinkm)
-        get_link_new = link_id
+        get_link_new = link_idm
 
 def getlinkm(message):
         global link_coment, link_text, sql, link_id, get_link_new
