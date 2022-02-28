@@ -13,6 +13,10 @@ idcanal = 1001418408821
 conn = sqlite3.connect('db.db', check_same_thread=False)
 cursor = conn.cursor()
 
+def db_table_val(user_id: int, user_name: str, user_surname: str, username: str):
+	cursor.execute('INSERT INTO users (user_id, user_name, user_surname, username) VALUES (?, ?, ?, ?)', (user_id, user_name, user_surname, username))
+	conn.commit()
+
 @bot.message_handler(commands=["start"])
 def welcome(message):
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
@@ -35,6 +39,14 @@ def welcome(message):
     keyboard.add(btn2, btn3)
     keyboard.add(btn1, btn4)
     bot.send_photo(message.from_user.id, img, caption=text, reply_markup=keyboard, parse_mode='html')
+
+    us_id = message.from_user.id
+    us_name = message.from_user.first_name
+    us_sname = message.from_user.last_name
+    username = message.from_user.username
+
+    db_table_val(user_id=us_id, user_name=us_name, user_surname=us_sname, username=username)
+
 
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def handle_text(message):  
