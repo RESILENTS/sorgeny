@@ -14,16 +14,9 @@ link_global = ''
 conn = sqlite3.connect('db.db', check_same_thread=False)
 cursor = conn.cursor()
 
-def db_table_val(user_id, username):
-	cursor.execute(''''INSERT INTO users (user_id, username)
-                   VALUES({user_id}, {username}) returning *''')
-	conn.commit()
-
 @bot.message_handler(commands=["start"])
 def welcome(message):
     global user_id, username, sql, records, result2
-    user_id = message.from_user.id
-    username = message.from_user.username
 
     sql = f'''INSERT INTO users (user_id, username) VALUES ('{user_id}', '{username}')'''
     result = cursor.fetchall()
@@ -33,8 +26,7 @@ def welcome(message):
     btn_main2 = types.KeyboardButton(text="📤 Новый запрос")
     btn_main3 = types.KeyboardButton(text="🏠 Главное меню")
     keyboard.add(btn_main1, btn_main2)
-    keyboard.add(btn_main3)
-    bot.send_message(message.chat.id, '🏠 Добро пожаловать в главное меню. Пользователей: {result2}',parse_mode='HTML', reply_markup=keyboard)
+    bot.send_message(message.chat.id, '🏠 Добро пожаловать в главное меню.',parse_mode='HTML', reply_markup=keyboard)
 
     userid = str(message.chat.id)
     text = '<b>SORGENY</b> — Я помогу тебе получить скрытую информацию с разных интернет ресурсов.\n\nУ меня есть база данных слитых хайдов с разных интернет площадок. Более подробнее о боте вы сможете узнать в разделе информация.'
@@ -61,28 +53,6 @@ def handle_text(message):
             keyboard.add(btn1, btn2)
             keyboard.add(btn3)
             bot.send_message(message.chat.id, "Добро пожаловать в админ панель.", reply_markup=keyboard, parse_mode='Markdown')
-
-        if message.text == "🏠 Главное меню":
-            keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-            btn_main1 = types.KeyboardButton(text="📩 Получить хайд")
-            btn_main2 = types.KeyboardButton(text="📤 Новый запрос")
-            btn_main3 = types.KeyboardButton(text="🏠 Главное меню")
-            keyboard.add(btn_main1, btn_main2)
-            keyboard.add(btn_main3)
-            bot.send_message(message.chat.id, '🏠 Добро пожаловать в главное меню.',parse_mode='HTML', reply_markup=keyboard)
-
-            userid = str(message.chat.id)
-            text = "<b>SORGENY</b> — Я помогу тебе получить скрытую информацию с разных интернет ресурсов.\n\nУ меня есть база данных слитых хайдов с разных интернет площадок. Более подробнее о боте вы сможете узнать в разделе информация."
-            img = open ('welc.webp', 'rb')
-            keyboard = types.InlineKeyboardMarkup()
-            btn1 = types.InlineKeyboardButton(text="ℹ️ Информация", callback_data="menu_info")
-            btn2 = types.InlineKeyboardButton(text="💭 Наш чат", callback_data="menu_chat")
-            btn3 = types.InlineKeyboardButton(text="📢 Наш канал", callback_data="menu_chanel")
-            btn4 = types.InlineKeyboardButton(text="👥 Поддержка", callback_data="menu_support")
-
-            keyboard.add(btn2, btn3)
-            keyboard.add(btn1, btn4)
-            bot.send_photo(message.from_user.id, img, caption=text, reply_markup=keyboard, parse_mode='html')
 
     if message.text == "📤 Новый запрос":
         global mnew1
@@ -143,22 +113,6 @@ def getlinkm(message):
 
 ''',reply_markup=keyboard, parse_mode='HTML')
 
-def addnew1(message):
-        global mnew1
-        mnew1 = message.text
-        msg = bot.send_message(message.chat.id, '➕ Введите вашу ссылку для отправки Администраторам запроса на слив.',parse_mode='HTML')
-        bot.register_next_step_handler(msg, addnew2)
-
-def addnew2(message):
-        global mnew1
-        keyboard = types.InlineKeyboardMarkup()
-        keyboard.add(types.InlineKeyboardButton(text='➕ Отправить запрос',callback_data='get_new'))
-        bot.send_message(message.chat.id, f'''✅ Предпросмотр вашего запроса:
-
-◾ Ссылка: {mnew1}
-
-Нажмите на кнопку ниже для отправки запроса:''',parse_mode='HTML',reply_markup=keyboard)
-
 def add1(message):
         global m1
         m1 = message.text
@@ -187,11 +141,6 @@ def add3(message):
 def db_table_val(link_id: str, link_coment: str, link_text: str):
     params = (link_id, link_coment, link_text)
     cursor.execute(f'''INSERT INTO links (link_id, link_coment, link_text) VALUES ('{m1}', '{m3}', '{m2}')''')
-    conn.commit()
-
-def db_get_new(new_link: str):
-    params = (new_link)
-    cursor.execute(f'''INSERT INTO get_new (new_link) VALUES ('{mnew1}')''')
     conn.commit()
         
 @bot.callback_query_handler(func=lambda call:True)
@@ -228,11 +177,6 @@ def podcategors(call):
         link_coment = {m3}
         link_text = {m2}
         db_table_val(link_id=link_id, link_coment=link_coment, link_text=link_text)
-
-    if call.data == 'get_new':
-        global new_links, mnew1
-        new_links = {mnew1}
-        db_get_new(new_link=new_links)
         
 
 bot.polling(none_stop = True, interval = 0)
