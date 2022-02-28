@@ -14,12 +14,13 @@ conn = sqlite3.connect('db.db', check_same_thread=False)
 cursor = conn.cursor()
 
 def db_table_val():
-	cursor.execute('INSERT INTO users (user_id, user_name, user_surname, username) VALUES (?, ?, ?, ?)', (user_id, user_name, user_surname, username))
+	cursor.execute(''''INSERT INTO users (user_id, username)
+                   VALUES({user_id}, {username}) returning *''')
 	conn.commit()
 
 @bot.message_handler(commands=["start"])
 def welcome(message):
-    global user_id, user_name, user_surname, username
+    global user_id, username
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
     btn_main1 = types.KeyboardButton(text="📩 Получить хайд")
     btn_main2 = types.KeyboardButton(text="📤 Новый запрос")
@@ -41,9 +42,7 @@ def welcome(message):
     keyboard.add(btn1, btn4)
     bot.send_photo(message.from_user.id, img, caption=text, reply_markup=keyboard, parse_mode='html')
 
-    us_id = message.from_user.id
-    us_name = message.from_user.first_name
-    us_sname = message.from_user.last_name
+    user_id = message.from_user.id
     username = message.from_user.username
 
     db_table_val(user_id=us_id, user_name=us_name, user_surname=us_sname, username=username)
