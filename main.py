@@ -108,7 +108,7 @@ def getlinkm(message):
         link_coment = ""
         link_text = ""
         link_id = message.text
-	link_global = link_id
+        link_global = link_id
         sql = "SELECT * FROM links WHERE link_id =?"
         result = cursor.fetchall()
         for row in cursor.execute(sql, ([link_id])):
