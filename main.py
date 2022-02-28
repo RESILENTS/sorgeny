@@ -209,8 +209,7 @@ def podcategors(call):
 
     if call.data == 'get_new':
         global get_link_new, new_link, link_global
-        new_link = link_global
-        db_get_new(new_link=new_link)
+        db_get_new(new_link=link_global)
         
 
 bot.polling(none_stop = True, interval = 0)
