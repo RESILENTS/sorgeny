@@ -210,8 +210,6 @@ def podcategors(call):
     if call.data == 'get_new':
         global new_link_text
         new_link_text = call.message.text
-        bot.delete_message(chat_id=call.message.chat.id,message_id=call.message.message_id)
-        global link_idm
         new_links = new_link_text
         db_get_new(new_link=new_links)
         bot.send_message(text='✅ Успешно!')
