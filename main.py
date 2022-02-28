@@ -87,7 +87,7 @@ def getlinkm(message):
             link_text = list(row)[2]
         if  not link_text: 
             keyboard = types.InlineKeyboardMarkup()
-            btn1 = types.InlineKeyboardButton(text="➕ Отправить запрос на слив", callback_data="get_new")
+            btn1 = types.InlineKeyboardButton(text="➕ Отправить запрос на слив", callback_data="new_link")
             keyboard.add(btn1)
             bot.send_message(message.chat.id, f'''❌ <b>ОШИБКА:</b> По вашему запросу <b>"{link_id}"</b> ничего не найдено.
 	    
@@ -170,6 +170,10 @@ def podcategors(call):
         link_coment = {m3}
         link_text = {m2}
         db_table_val(link_id=link_id, link_coment=link_coment, link_text=link_text)
+
+    if call.data == 'new_link':
+        msg = bot.send_message(call.message.chat.id, '📩 На данный момент все запросы на слив принимаем в ручную.\n\nОтправте свои ссылки в ЛС по контактам ниже:\n👥 @resilents',parse_mode='HTML')
+        bot.register_next_step_handler(msg)
         
 
 bot.polling(none_stop = True, interval = 0)
