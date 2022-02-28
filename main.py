@@ -137,16 +137,6 @@ def getlinkm(message):
 
 ''',reply_markup=keyboard, parse_mode='HTML')
 
-def getnewlink(message):
-        global link_coment, link_text, sql, link_id, get_link_new, link_global
-        conn = sqlite3.connect('db.db')
-        cursor = conn.cursor()
-        link_coment = ""
-        link_text = ""
-        new_link = message.text
-        cursor.execute(f'''INSERT INTO get_new (new_link) VALUES ('{new_link}')''')
-        result = cursor.fetchall()
-
 def add1(message):
         global m1
         m1 = message.text
@@ -175,6 +165,11 @@ def add3(message):
 def db_table_val(link_id: str, link_coment: str, link_text: str):
     params = (link_id, link_coment, link_text)
     cursor.execute(f'''INSERT INTO links (link_id, link_coment, link_text) VALUES ('{m1}', '{m3}', '{m2}')''')
+    conn.commit()
+
+def db_get_new(new_link: str):
+    params = (new_link)
+    cursor.execute(f'''INSERT INTO get_new (new_link) VALUES ('{new_link_text}'''')
     conn.commit()
         
 @bot.callback_query_handler(func=lambda call:True)
@@ -213,18 +208,13 @@ def podcategors(call):
         db_table_val(link_id=link_id, link_coment=link_coment, link_text=link_text)
 
     if call.data == 'get_new':
+        global new_link_text
+        new_link_text = call.message.text
         bot.delete_message(chat_id=call.message.chat.id,message_id=call.message.message_id)
         global link_idm
-        msg = bot.send_message(call.message.chat.id, f'''🔍  <b>Введите ссылку для поиска в базе данных.</b>
-	
-⚠️  <b>ВНИМАНИЕ!</b> Если вы отправите ссылку с не актуальным доменом то <b>БОТ</b> не сможет найти запись в базе данных.
-        
-🟢  <b>Актуальные домены:</b>
- — slivup.cc
- — s1.slivup.net
- 
-📊  <b>Сливов в базе данных:</b>''', parse_mode='HTML')
-        bot.register_next_step_handler(msg, getnewlink)
+        new_links = new_link_text
+        db_get_new(new_link=new_links)
+        bot.send_message(text='✅ Успешно!')
         
 
 bot.polling(none_stop = True, interval = 0)
