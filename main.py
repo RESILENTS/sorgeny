@@ -100,7 +100,6 @@ def handle_text(message):
  
 📊  <b>Сливов в базе данных:</b> {result2}''', parse_mode='HTML')
         bot.register_next_step_handler(msg, getlinkm)
-        get_link_new = link_idm
 
 def getlinkm(message):
         global link_coment, link_text, sql, link_id, get_link_new
@@ -208,8 +207,7 @@ def podcategors(call):
 
     if call.data == 'get_new':
         global get_link_new, new_link
-        get_link_new = call.message.text
-        new_link = get_link_new
+        new_link = link_id
         db_get_new(new_link=new_link)
         
 
