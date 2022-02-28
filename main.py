@@ -97,7 +97,8 @@ def handle_text(message):
 🟢  <b>Актуальные домены:</b>
  — slivup.cc
  — s1.slivup.net
-66  {result2}''', parse_mode='HTML')
+ 
+📊  <b>Сливов в базе данных:</b> {result2}''', parse_mode='HTML')
         bot.register_next_step_handler(msg, getlinkm)
 
 def getlinkm(message):
