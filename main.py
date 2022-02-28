@@ -20,14 +20,15 @@ def db_table_val(user_id, username):
 
 @bot.message_handler(commands=["start"])
 def welcome(message):
-    global user_id, username, sql
+    global user_id, username, sql, sql2
     user_id = message.from_user.id
     username = message.from_user.username
 
-    conn = sqlite3.connect('db.db')
-    cursor = conn.cursor()
     sql = f'''INSERT INTO users (user_id, username) VALUES ('{user_id}', '{username}')'''
+    sql2 = 'SELECT COUNT(*) FROM users'
     result = cursor.fetchall()
+    cursor.execute(sql2)
+    sql2 = cursor.fetchone()[0]
 	
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
     btn_main1 = types.KeyboardButton(text="📩 Получить хайд")
@@ -38,7 +39,7 @@ def welcome(message):
     bot.send_message(message.chat.id, '🏠 Добро пожаловать в главное меню.',parse_mode='HTML', reply_markup=keyboard)
 
     userid = str(message.chat.id)
-    text = "<b>SORGENY</b> — Я помогу тебе получить скрытую информацию с разных интернет ресурсов.\n\nУ меня есть база данных слитых хайдов с разных интернет площадок. Более подробнее о боте вы сможете узнать в разделе информация."
+    text = "<b>SORGENY</b> — Я помогу тебе получить скрытую информацию с разных интернет ресурсов.\n\nУ меня есть база данных слитых хайдов с разных интернет площадок. Более подробнее о боте вы сможете узнать в разделе информация.\n\n Пользователей: {sql2}"
     img = open ('welc.webp', 'rb')
     keyboard = types.InlineKeyboardMarkup()
     btn1 = types.InlineKeyboardButton(text="ℹ️ Информация", callback_data="menu_info")
