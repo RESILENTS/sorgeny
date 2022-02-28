@@ -151,7 +151,6 @@ def addnew1(message):
 
 def addnew2(message):
         global mnew1
-        mnew1 = message.text
         keyboard = types.InlineKeyboardMarkup()
         keyboard.add(types.InlineKeyboardButton(text='➕ Отправить запрос',callback_data='get_new'))
         bot.send_message(message.chat.id, f'''✅ Предпросмотр вашего запроса:
@@ -232,8 +231,7 @@ def podcategors(call):
 
     if call.data == 'get_new':
         global new_link_text
-        new_link_text = message.text
-        new_links = new_link_text
+        new_links = mnew1
         db_get_new(new_link=new_links)
         
 
