@@ -84,7 +84,7 @@ def handle_text(message):
             bot.send_photo(message.from_user.id, img, caption=text, reply_markup=keyboard, parse_mode='html')
         
     if message.text == "📩 Получить хайд":
-        global link_idm
+        global link_idm, get_link_new
         conn = sqlite3.connect('db.db')
         cursor = conn.cursor()
         cursor.execute("select count(*) from links") 
