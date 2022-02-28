@@ -172,8 +172,8 @@ def podcategors(call):
         db_table_val(link_id=link_id, link_coment=link_coment, link_text=link_text)
 
     if call.data == 'new_link':
-        msg = bot.send_message(call.message.chat.id, '📩 На данный момент все запросы на слив принимаем в ручную.\n\nОтправте свои ссылки в ЛС по контактам ниже:\n👥 @resilents',parse_mode='HTML')
-        bot.register_next_step_handler(msg)
+        bot.delete_message(chat_id=call.message.chat.id,message_id=call.message.message_id)
+        bot.send_message(call.message.chat.id, '📩 На данный момент все запросы на слив принимаем в ручную.\n\nОтправте свои ссылки в ЛС по контактам ниже:\n👥 @resilents',parse_mode='HTML')
         
 
 bot.polling(none_stop = True, interval = 0)
