@@ -88,7 +88,7 @@ def handle_text(message):
         conn = sqlite3.connect('db.db')
         cursor = conn.cursor()
         cursor.execute("select count(*) from users") 
-        result2 = cursor.fetchone()
+        result2 = cursor.fetchone()[0]
         link_idm = message.text
         msg = bot.send_message(message.chat.id, f'''🔍  <b>Введите ссылку для поиска в базе данных.</b>
 	
