@@ -27,10 +27,10 @@ def welcome(message):
     text = "<b>SORGENY</b> — Я помогу тебе получить скрытую информацию с разных интернет ресурсов.\n\nУ меня есть база данных слитых хайдов с разных интернет площадок. Более подробнее о боте вы сможете узнать в разделе информация."
     img = open ('welc.webp', 'rb')
     keyboard = types.InlineKeyboardMarkup()
-    btn1 = types.InlineKeyboardButton(text="ℹ️ Информация", callback_data="test")
-    btn2 = types.InlineKeyboardButton(text="💭 Наш чат", callback_data="uabtn")
-    btn3 = types.InlineKeyboardButton(text="📢 Наш канал", callback_data="test")
-    btn4 = types.InlineKeyboardButton(text="👥 Поддержка", callback_data="test")
+    btn1 = types.InlineKeyboardButton(text="ℹ️ Информация", callback_data="menu_info")
+    btn2 = types.InlineKeyboardButton(text="💭 Наш чат", callback_data="menu_chat")
+    btn3 = types.InlineKeyboardButton(text="📢 Наш канал", callback_data="menu_chanel")
+    btn4 = types.InlineKeyboardButton(text="👥 Поддержка", callback_data="menu_support")
 
     keyboard.add(btn2, btn3)
     keyboard.add(btn1, btn4)
@@ -47,6 +47,27 @@ def handle_text(message):
             keyboard.add(btn1, btn2)
             keyboard.add(btn3)
             bot.send_message(message.chat.id, "Добро пожаловать в админ панель.", reply_markup=keyboard, parse_mode='Markdown')
+
+        if message.text == "🏠 Главное меню":
+            keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+            btn_main1 = types.KeyboardButton(text="📩 Получить хайд")
+            btn_main2 = types.KeyboardButton(text="📤 Новый запрос")
+            btn_main3 = types.KeyboardButton(text="🏠 Главное меню")
+            keyboard.add(btn_main1, btn_main2)
+            keyboard.add(btn_main3)
+            bot.send_message(message.chat.id, '🏠 Добро пожаловать в главное меню.',parse_mode='HTML', reply_markup=keyboard)
+
+            text = "<b>SORGENY</b> — Я помогу тебе получить скрытую информацию с разных интернет ресурсов.\n\nУ меня есть база данных слитых хайдов с разных интернет площадок. Более подробнее о боте вы сможете узнать в разделе информация."
+            img = open ('welc.webp', 'rb')
+            keyboard = types.InlineKeyboardMarkup()
+            btn1 = types.InlineKeyboardButton(text="ℹ️ Информация", callback_data="menu_info")
+            btn2 = types.InlineKeyboardButton(text="💭 Наш чат", callback_data="menu_chat")
+            btn3 = types.InlineKeyboardButton(text="📢 Наш канал", callback_data="menu_chanel")
+            btn4 = types.InlineKeyboardButton(text="👥 Поддержка", callback_data="menu_support")
+
+            keyboard.add(btn2, btn3)
+            keyboard.add(btn1, btn4)
+            bot.send_photo(message.from_user.id, img, caption=text, reply_markup=keyboard, parse_mode='html')
         
     if message.text == "📩 Получить хайд":
         global link_idm
