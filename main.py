@@ -27,7 +27,7 @@ def welcome(message):
     sql = f'''INSERT INTO users (user_id, username) VALUES ('{user_id}', '{username}')'''
     result = cursor.fetchall()
     cursor.execute("select count(*) from users") 
-    result2 = cursor.fetch_one()
+    result2 = cursor.fetchone()
 	
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
     btn_main1 = types.KeyboardButton(text="📩 Получить хайд")
