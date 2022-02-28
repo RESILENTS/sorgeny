@@ -100,9 +100,12 @@ def getlinkm(message):
 
 🔗  <b>Ссылка вашего запроса: </b>
  — {link_id}
+ 
+💭  <b>Комментарий к запросу:</b>
+{link_text}
 
 🔐  <b>Скрытое содержимое: </b>
-{link_text}
+{link_coment}
 
 ''',reply_markup=keyboard, parse_mode='HTML')
 
