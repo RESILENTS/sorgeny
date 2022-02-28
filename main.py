@@ -20,7 +20,7 @@ def db_table_val():
 
 @bot.message_handler(commands=["start"])
 def welcome(message):
-    global user_id1, username1
+    global user_id1, username1, user_id, username
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
     btn_main1 = types.KeyboardButton(text="📩 Получить хайд")
     btn_main2 = types.KeyboardButton(text="📤 Новый запрос")
