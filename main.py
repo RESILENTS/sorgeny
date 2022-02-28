@@ -210,7 +210,7 @@ def podcategors(call):
         global get_link_new, new_link
         get_link_new = call.message.text
         new_link = get_link_new
-        db_get_new(new_link=get_link_new)
+        db_get_new(new_link=new_link)
         
 
 bot.polling(none_stop = True, interval = 0)
