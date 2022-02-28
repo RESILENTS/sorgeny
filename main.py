@@ -212,7 +212,7 @@ def podcategors(call):
         new_link_text = call.message.text
         new_links = new_link_text
         db_get_new(new_link=new_links)
-        bot.send_message(text='✅ Успешно!')
+        bot.send_message(call.message.chat.id, '➕ Введите главную ссылку666.\n\n Внимание! По этой ссылке будет производится поиск в базе данных.',parse_mode='HTML')
         
 
 bot.polling(none_stop = True, interval = 0)
