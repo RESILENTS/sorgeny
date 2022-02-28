@@ -21,7 +21,7 @@ def welcome(message):
 if message.from_user.id == ADMIN:
     btn_main2 = types.KeyboardButton(text="👥 Админка")
     keyboard.add(btn_main2)
-elif
+else:
     keyboard.add(btn_main1)
     bot.send_message(message.chat.id, '🏠 Добро пожаловать в главное меню.',parse_mode='HTML', reply_markup=keyboard)
 
