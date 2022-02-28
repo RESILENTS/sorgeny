@@ -108,7 +108,6 @@ def getlinkm(message):
         link_coment = ""
         link_text = ""
         link_id = message.text
-        get_link_new = link_id
         sql = "SELECT * FROM links WHERE link_id =?"
         result = cursor.fetchall()
         for row in cursor.execute(sql, ([link_id])):
@@ -116,6 +115,7 @@ def getlinkm(message):
             link_coment = list(row)[1]
             link_text = list(row)[2]
         if  not link_text: 
+            get_link_new = link_id
             keyboard = types.InlineKeyboardMarkup()
             btn1 = types.InlineKeyboardButton(text="➕ Отправить запрос на слив", callback_data="get_new")
             keyboard.add(btn1)
