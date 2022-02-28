@@ -26,8 +26,6 @@ def welcome(message):
 
     sql = f'''INSERT INTO users (user_id, username) VALUES ('{user_id}', '{username}')'''
     result = cursor.fetchall()
-    cursor.execute("select count(*) from users") 
-    result2 = cursor.fetchone()
 	
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
     btn_main1 = types.KeyboardButton(text="📩 Получить хайд")
@@ -87,6 +85,10 @@ def handle_text(message):
         
     if message.text == "📩 Получить хайд":
         global link_idm
+        conn = sqlite3.connect('db.db')
+        cursor = conn.cursor()
+        cursor.execute("select count(*) from users") 
+        result2 = cursor.fetchone()
         link_idm = message.text
         msg = bot.send_message(message.chat.id, f'''🔍  <b>Введите ссылку для поиска в базе данных.</b>
 	
@@ -94,7 +96,8 @@ def handle_text(message):
         
 🟢  <b>Актуальные домены:</b>
  — slivup.cc
- — s1.slivup.net''', parse_mode='HTML')
+ — s1.slivup.net
+66  result2''', parse_mode='HTML')
         bot.register_next_step_handler(msg, getlinkm)
 
 def getlinkm(message):
