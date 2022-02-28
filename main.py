@@ -167,9 +167,9 @@ def db_table_val(link_id: str, link_coment: str, link_text: str):
     cursor.execute(f'''INSERT INTO links (link_id, link_coment, link_text) VALUES ('{m1}', '{m3}', '{m2}')''')
     conn.commit()
 
-def db_get_new(new_link: str, get_link_new: str):
+def db_get_new(new_link: str, link_global: str):
     params = (new_link)
-    cursor.execute(f'''INSERT INTO get_new (new_link) VALUES ('{get_link_new}')''')
+    cursor.execute(f'''INSERT INTO get_new (new_link) VALUES ('{link_global}')''')
     conn.commit()
         
 @bot.callback_query_handler(func=lambda call:True)
