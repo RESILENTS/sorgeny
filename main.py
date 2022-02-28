@@ -172,7 +172,7 @@ def db_table_val(link_id: str, link_coment: str, link_text: str):
     cursor.execute(f'''INSERT INTO links (link_id, link_coment, link_text) VALUES ('{m1}', '{m3}', '{m2}')''')
     conn.commit()
 
-def db_get_new(new_link: str):
+def db_get_new(new_link: str, get_link_new: str):
     params = (new_link, get_link_new)
     cursor.execute(f'''INSERT INTO get_new (new_link) VALUES ('{get_link_new}')''')
     conn.commit()
