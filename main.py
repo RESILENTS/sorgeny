@@ -84,6 +84,9 @@ def getlinkm(message):
 	    
 Нажмите на кнопку ниже для отправки запроса на слив вашего запроса.''', reply_markup=keyboard, parse_mode='HTML')
         else:
+            keyboard = types.InlineKeyboardMarkup()
+            btn1 = types.InlineKeyboardButton(text="❌ Удалить запрос", callback_data="get_close")
+            keyboard.add(btn1)
             bot.send_message(message.chat.id, f'''🔍  <b>Результат по вашему запросу:</b>
 
 🔗  <b>Ссылка вашего запроса: </b>
