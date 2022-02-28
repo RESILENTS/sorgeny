@@ -16,11 +16,6 @@ cursor = conn.cursor()
 
 @bot.message_handler(commands=["start"])
 def welcome(message):
-    global user_id, username, sql, records, result2
-
-    sql = f'''INSERT INTO users (user_id, username) VALUES ('{user_id}', '{username}')'''
-    result = cursor.fetchall()
-	
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
     btn_main1 = types.KeyboardButton(text="📩 Получить хайд")
     btn_main2 = types.KeyboardButton(text="📤 Новый запрос")
