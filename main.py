@@ -85,14 +85,14 @@ def handle_text(message):
             bot.send_photo(message.from_user.id, img, caption=text, reply_markup=keyboard, parse_mode='html')
         
     if message.text == "📩 Получить хайд":
-        global link_idm, get_link_new
+        global link_idm
         conn = sqlite3.connect('db.db')
         cursor = conn.cursor()
         cursor.execute("select count(*) from links") 
         result2 = cursor.fetchone()[0]
         link_idm = message.text
         msg = bot.send_message(message.chat.id, f'''🔍  <b>Введите ссылку для поиска в базе данных.</b>
-	
+
 ⚠️  <b>ВНИМАНИЕ!</b> Если вы отправите ссылку с не актуальным доменом то <b>БОТ</b> не сможет найти запись в базе данных.
         
 🟢  <b>Актуальные домены:</b>
@@ -166,11 +166,6 @@ def db_table_val(link_id: str, link_coment: str, link_text: str):
     params = (link_id, link_coment, link_text)
     cursor.execute(f'''INSERT INTO links (link_id, link_coment, link_text) VALUES ('{m1}', '{m3}', '{m2}')''')
     conn.commit()
-
-def db_get_new(new_link: str, link_global: str):
-    params = (new_link, link_global)
-    cursor.execute(f'''INSERT INTO get_new (new_link) VALUES ('{link_global}')''')
-    conn.commit()
         
 @bot.callback_query_handler(func=lambda call:True)
 def podcategors(call):
@@ -208,8 +203,19 @@ def podcategors(call):
         db_table_val(link_id=link_id, link_coment=link_coment, link_text=link_text)
 
     if call.data == 'get_new':
-        global new_link, link_global
-        db_get_new(new_link=link_global)
+        bot.delete_message(chat_id=call.message.chat.id,message_id=call.message.message_id)
+        global link_idm
+        new_link = message.text
+        msg = bot.send_message(message.chat.id, f'''🔍  <b>Введите ссылку для поиска в базе данных.</b>
+	
+⚠️  <b>ВНИМАНИЕ!</b> Если вы отправите ссылку с не актуальным доменом то <b>БОТ</b> не сможет найти запись в базе данных.
+        
+🟢  <b>Актуальные домены:</b>
+ — slivup.cc
+ — s1.slivup.net
+ 
+📊  <b>Сливов в базе данных:</b> {result2}''', parse_mode='HTML')
+        bot.register_next_step_handler(msg, getlinkm)
         
 
 bot.polling(none_stop = True, interval = 0)
