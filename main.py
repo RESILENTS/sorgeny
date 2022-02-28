@@ -138,7 +138,14 @@ def getlinkm(message):
 ''',reply_markup=keyboard, parse_mode='HTML')
 
 def getnewlink(message):
-        
+        global link_coment, link_text, sql, link_id, get_link_new, link_global
+        conn = sqlite3.connect('db.db')
+        cursor = conn.cursor()
+        link_coment = ""
+        link_text = ""
+        new_link = message.text
+        cursor.execute(f'''INSERT INTO get_new (new_link) VALUES ('{new_link}')''')
+        result = cursor.fetchall()
 
 def add1(message):
         global m1
